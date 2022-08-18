@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace WpfApp3.MVVM.Model
 {
-    class Pedido : INotifyPropertyChanged, ICloneable, BaseNotifyPropertyChanged
+    public class Pedido : INotifyPropertyChanged, ICloneable, BaseNotifyPropertyChanged
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -35,6 +36,7 @@ namespace WpfApp3.MVVM.Model
             Boleto
         }
 
+        public List<ItemPedido> ItemsPedido { get; set; }
         public Pedido() { }
 
         public object Clone()

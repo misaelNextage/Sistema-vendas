@@ -7,7 +7,7 @@ using WpfApp3.MVVM.ViewModel;
 
 namespace WpfApp3.MVVM.CRUD
 {
-    class NovaPessoaCommand : BaseCommand
+    public class NovaPessoaCommand : BaseCommand
     {
         public override bool CanExecute(object parameter)
         {

@@ -4,82 +4,108 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp3.MVVM.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Margin="20">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Column="0" Grid.Row="1" Margin="6" Orientation="Vertical">
-                <Label Content="Nome do Produto" />
-                <TextBox Text="{Binding ProdutoEdit.Nome}" Name="nomeProduto" Width="250" Height="20" HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <Label Content="Codigo do Produto" />
-                <TextBox Text="{Binding ProdutoEdit.Codigo}" Name="codigoProduto" Width="250" Height="20" HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <Label Content="Valor do Produto" />
-                <TextBox Text="{Binding ProdutoEdit.Valor}" Name="valorProduto" Width="250" Height="20" HorizontalAlignment="Left" Margin="0,0,0,20"/>
-                <Button Width="150" 
-                        Height="50"
-                        Margin="0,0,0,0"
-                        Cursor="Hand"
-                        CommandParameter="{Binding}"
-                        Command="{Binding Novo}">
-                    <Button.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                            <GradientStop Color="#FF5BFF5B" Offset="0.0"/>
-                            <GradientStop Color="#FF00B400" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Button.Background>
-                    <Button.Clip>
-                        <RectangleGeometry 
-                            RadiusX="10" 
-                            RadiusY="10"
-                            Rect="0,0,150,50"/>
-                    </Button.Clip>
-                    <Grid>
-                        <StackPanel>
-                            <TextBlock Text="Incluir"
-                                   Foreground="White"
-                                   FontSize="28"
-                                   Margin="5,5,5,5"
-                                   HorizontalAlignment="Center"/>
-                        </StackPanel>
-                    </Grid>
-                </Button>
-            </StackPanel>
+             xmlns:viewModel="clr-namespace:WpfApp3.MVVM.ViewModel"
+             xmlns:model="clr-namespace:WpfApp3.MVVM.Model"
+             mc:Ignorable="d" d:DesignWidth="800" Height="524">
+    <Grid Height="523" Width="799">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="435*"/>
+            <ColumnDefinition Width="364*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Id:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" Width="40" Height="25"/>
+        <TextBox Text="" IsReadOnly="True" x:Name="idPessoa" Width="44" HorizontalAlignment="Right" Margin="0,15,350,488">
+            <TextBox.BorderBrush>
+                <ImageBrush/>
+            </TextBox.BorderBrush>
+            <TextBox.Background>
+                <ImageBrush/>
+            </TextBox.Background>
+        </TextBox>
+        <Label Content="Nome:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top" Width="45" Height="25"/>
+        <TextBox Text="" IsReadOnly="True" x:Name="nomePessoa" Margin="140,15,87,488">
+            <TextBox.BorderBrush>
+                <ImageBrush/>
+            </TextBox.BorderBrush>
+            <TextBox.Background>
+                <ImageBrush/>
+            </TextBox.Background>
+        </TextBox>
+        <Label Content="Endereço:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="18,35,0,0" VerticalAlignment="Top" Width="64" Height="25"/>
+        <TextBox Text="" IsReadOnly="True" x:Name="enderecoPessoa" Margin="78,40,354,458" Grid.ColumnSpan="2">
+            <TextBox.BorderBrush>
+                <ImageBrush/>
+            </TextBox.BorderBrush>
+            <TextBox.Background>
+                <ImageBrush/>
+            </TextBox.Background>
+        </TextBox>
+        <Label Content="CPF:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="353,10,0,0" VerticalAlignment="Top" Width="32" Height="25"/>
+        <TextBox Text="" IsReadOnly="True" x:Name="cpfPessoa" Margin="385,15,242,488" Grid.ColumnSpan="2">
+            <TextBox.BorderBrush>
+                <ImageBrush/>
+            </TextBox.BorderBrush>
+            <TextBox.Background>
+                <ImageBrush/>
+            </TextBox.Background>
+        </TextBox>
+        <Button x:Name="pesquisarPessoas" Content="Buscar/Alterar Cliente" Click="Button_Click"  Margin="45,10,160,488" Background="#FF17A7DC" Height="25" Grid.Column="1">
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+        </Button>
+        <Button Content="Adicionar/Alterar Produtos" x:Name="abrirCatalogo" Click="Button_Click2" Margin="265,299,6,199" Background="#FF96CDB4"/>
+        <Button Margin="320,448,320,43"
+                Padding="3"
+                Cursor="Hand"
+                RenderTransformOrigin="0.5,0.5"
+                Content="Finalizar Pedido" Background="#FF4CD64C" Grid.ColumnSpan="2" Click="Button_Click_1" />
+        <ScrollViewer
+                    HorizontalScrollBarVisibility="Hidden"
+                    VerticalScrollBarVisibility="Visible" Margin="43,70,169,229" Grid.ColumnSpan="2">
+            <DataGrid ItemsSource="{Binding ''}"
+                        AutoGenerateColumns="False"
+                        IsReadOnly="False"
+                        x:Name="datagridNovoPedidos"
+                        SelectedItem="{Binding ItemSelecionado}" Width="577" Height="224">
+                <DataGrid.CellStyle>
+                    <Style TargetType="{x:Type DataGridCell}" >
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="SeaGreen"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn x:Name="checkBox" Header="Selecionar" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Quantidade" IsReadOnly="True" Binding="{Binding Quantidade}"/>
+                    <DataGridTextColumn Header="Produto" IsReadOnly="True" Binding="{Binding Produto.Nome}" Width="150"/>
+                    <DataGridTextColumn Header="Valor Unitario" IsReadOnly="True" Binding="{Binding Produto.Valor, StringFormat='c', ConverterCulture=pt-BR}" Width="150"/>
+                    <DataGridTextColumn Header="Valor Total" IsReadOnly="True" Binding="{Binding Valor, StringFormat='c', ConverterCulture=pt-BR}" Width="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
 
-            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-                <Button Margin="3"
-                        Padding="3"
-                        CommandParameter="{Binding}"
-                        Command="{Binding Editar}"
-                        Content="Editar"/>
-                <Button Margin="3" Padding="3" 
-                        CommandParameter="{Binding}"
-                        Command="{Binding Deletar}"
-                        Content="Deletar"/>
-            </StackPanel>
-            <ScrollViewer Grid.Column="1" Grid.Row="1"
-                      HorizontalScrollBarVisibility="Hidden"
-                      VerticalScrollBarVisibility="Visible">
-                <DataGrid ItemsSource="{Binding Produtos}"
-                                AutoGenerateColumns="False"
-                                IsReadOnly="True"
-                                Name="datagridProdutos"
-                                SelectedItem="{Binding ProdutoSelecionado}">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Header="Nome" Binding="{Binding Nome}"/>
-                        <DataGridTextColumn Header="Codigo" Binding="{Binding Codigo}"/>
-                        <DataGridTextColumn Header="Valor" Binding="{Binding Valor}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </ScrollViewer>
-        </Grid>
-    </StackPanel>
+        </ScrollViewer>
+        <Button Margin="55,255,335,238" Content="Excluir" Click="Button_Click_2">
+        </Button>
+        <ComboBox Margin="43,381,202,111" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBoxItem IsSelected="True">Dinheiro</ComboBoxItem>
+            <ComboBoxItem >Cartao</ComboBoxItem>
+            <ComboBoxItem >Boleto</ComboBoxItem>
+        </ComboBox>
+
+        <ComboBox Margin="305,381,304,111" IsReadOnly="True" IsEditable="False" IsHitTestVisible="False" Focusable="False" Grid.ColumnSpan="2">
+            <ComboBoxItem IsSelected="True">Pendente</ComboBoxItem>
+            <ComboBoxItem >Pago</ComboBoxItem>
+            <ComboBoxItem >Recebido</ComboBoxItem>
+            <ComboBoxItem >Enviado</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Valor do Pedido:" HorizontalAlignment="Left" Margin="390,265,0,0" VerticalAlignment="Top" Width="105" Height="29" Grid.ColumnSpan="2"/>
+        <Label Content="" Name="totalDoPedido" HorizontalAlignment="Left" Margin="65,262,0,0" VerticalAlignment="Top" Width="119" FontSize="16" FontFamily="Segoe UI Black" Height="32" Grid.Column="1"/>
+        <Label Content="Forma de Pagamento:" HorizontalAlignment="Left" Margin="43,355,0,0" VerticalAlignment="Top" Width="190" Height="31"/>
+        <Label Content="Status:" HorizontalAlignment="Left" Margin="305,355,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.222,0.577" Width="190" Height="31" Grid.ColumnSpan="2"/>
+        <Label Content="Data do Faturamento:" HorizontalAlignment="Left" Margin="105,355,0,0" VerticalAlignment="Top" Width="190" Height="31" Grid.Column="1"/>
+        <Label Content="" Name="dataFaturamento" HorizontalAlignment="Left" Margin="105,381,0,0" VerticalAlignment="Top" Width="190" Height="31" Grid.Column="1"/>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Height="523" Margin="354,0,0,0" VerticalAlignment="Top" Width="10"/>
+    </Grid>
 </UserControl>

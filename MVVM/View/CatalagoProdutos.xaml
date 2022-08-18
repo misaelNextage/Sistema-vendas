@@ -1,0 +1,59 @@
+﻿<Window x:Class="WpfApp3.MVVM.View.CatalagoProdutos"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp3.MVVM.View"
+        mc:Ignorable="d"
+        Title="CatalagoProdutos" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,0,0,10" Grid.RowSpan="2">
+            <ScrollViewer
+                      HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Visible" Margin="0,0,10,10">
+                <DataGrid ItemsSource="{Binding Produtos}"
+                                AutoGenerateColumns="False"
+                                IsReadOnly="False"
+                                x:Name="datagridProdutos"
+                                SelectedItem="{Binding ProdutoSelecionado}" Width="336" Height="406" MouseLeftButtonUp="selecionarProduto" SelectionChanged="selecionarProduto">
+                    <DataGrid.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}" >
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="SeaGreen"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="150"/>
+                        <DataGridTextColumn Header="Código" Binding="{Binding Codigo}" Width="60"/>
+                        <DataGridTextColumn Header="Valor" Binding="{Binding Valor, StringFormat='c', ConverterCulture=pt-BR}" Width="80"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+        </StackPanel>
+        <Label Content="Produto:"  Grid.Column="1" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" Width="71"/>
+        <TextBox Grid.Column="1" Name="nomeProduto" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="76,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="298"/>
+        <Label Content="Quantidade:" Grid.Column="1" HorizontalAlignment="Left" Margin="23,55,0,0" VerticalAlignment="Top"/>
+        <TextBox Grid.Column="1" Name="Quantidade" HorizontalAlignment="Left" Height="26" Margin="103,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
+        <Label Content="Valor Unitario:" Grid.Column="1" HorizontalAlignment="Left" Margin="203,55,0,0" VerticalAlignment="Top" Width="86"/>
+        <TextBox Grid.Column="1" Name="ValorUnitario" IsReadOnly="True" HorizontalAlignment="Left" Height="26" Margin="289,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="85"/>
+        <Button Content="Adicionar" Grid.Column="1" HorizontalAlignment="Left" Margin="130,125,0,0" VerticalAlignment="Top" Width="149" Click="Button_Click"/>
+
+        <Label Content="Total de Itens:" Grid.Column="1" HorizontalAlignment="Left" Margin="51,38.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89"/>
+        <Label Content="Total do Pedido:" Grid.Column="1" HorizontalAlignment="Left" Margin="51,86.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="114"/>
+        <TextBox Grid.Column="1" Name="totalItens" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="145,38.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+        <TextBox Grid.Column="1" Name="totalPedido" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="145,86.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
+        <Button Content="Salvar Produtos" Grid.Column="1" HorizontalAlignment="Left" Margin="177,145.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="102" Height="36" Click="Button_Click_1"/>
+    </Grid>
+</Window>

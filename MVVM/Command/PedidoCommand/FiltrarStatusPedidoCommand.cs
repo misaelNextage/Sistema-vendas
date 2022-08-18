@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
-using WpfApp3.core;
+﻿using WpfApp3.core;
 using WpfApp3.MVVM.Model;
 using WpfApp3.MVVM.ViewModel;
-using System.Windows.Controls;
 using WpfApp3.MVVM.View;
 
 namespace WpfApp3.MVVM.CRUD
 {
-    class FiltrarStatusPedidosCommand : BaseCommand
+    public class FiltrarStatusPedidosCommand : BaseCommand
     {
         public override bool CanExecute(object parameter)
         {

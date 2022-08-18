@@ -8,7 +8,7 @@ using WpfApp3.MVVM.ViewModel;
 
 namespace WpfApp3.MVVM.CRUD
 {
-    class MudarStatusPedido
+    public class MudarStatusPedido
     {
         public MudarStatusPedido() {}
 

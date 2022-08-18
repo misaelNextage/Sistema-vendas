@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WpfApp3.MVVM.Model
 {
-    class Pessoa : INotifyPropertyChanged, ICloneable, BaseNotifyPropertyChanged
+    public class Pessoa : INotifyPropertyChanged, ICloneable, BaseNotifyPropertyChanged
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
