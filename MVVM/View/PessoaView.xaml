@@ -99,19 +99,19 @@
                                         Content="P"
                                         Width="20"
                                         Name="Pago"
-                                        Click="Button_Click"
+                                        Click="AlterarStatus"
                                         CommandParameter="{Binding}" Background="#FFFF00"/>
                                     <Button ToolTip="Marcar como enviado"
                                         Content="E"
                                         Width="20"
                                         Name="Enviado"
-                                        Click="Button_Click"
+                                        Click="AlterarStatus"
                                         CommandParameter="{Binding}" Background="#FFE68282"/>
                                     <Button ToolTip="Marcar como recebido"
                                         Content="R"
                                         Width="20"
                                         Name="Recebido"
-                                        Click="Button_Click"
+                                        Click="AlterarStatus"
                                         CommandParameter="{Binding}" Background="#FF4DCF5F" />
                                 </StackPanel>
                             </DataTemplate>
@@ -144,7 +144,7 @@
                         Cursor="Hand"
                         CommandParameter="{Binding}"
                         Command="{Binding IncluirPedidoCommand}"
-                        Content="Novo Pedido" Background="#FF4DCF5F" Click="Button_Click"/>
+                        Content="Novo Pedido" Background="#FF4DCF5F" />
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="347,243,13,163" Grid.ColumnSpan="2">
                 <Button Margin="5,19,0,19"

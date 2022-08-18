@@ -61,7 +61,7 @@ namespace WpfApp3.MVVM.View
             nomeBotaoFiltroPedido = status.Name.ToUpper();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AlterarStatus(object sender, RoutedEventArgs e)
         {
            
             var x = (Button)e.Source;
