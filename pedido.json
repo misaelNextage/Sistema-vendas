@@ -1,0 +1,13 @@
+﻿[
+  {
+    "Id": 2,
+    "Pessoa": {
+      "Id": 1
+    },
+    "ValorTotal": 200.0,
+    "DataVenda": "2022-08-16",
+    "FormaPagamentoPedido": "BOLETO",
+    "StatusPedido": "PAGO"
+  }
+
+]
