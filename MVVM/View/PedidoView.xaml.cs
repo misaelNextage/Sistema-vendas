@@ -1,15 +1,13 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Text.Json;
+using System.Windows;
 using System.Windows.Controls;
 using WpfApp3.MVVM.Model;
-using System.IO;
-using System.Text.Json;
 using WpfApp3.MVVM.ViewModel;
 
 namespace WpfApp3.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for PedidoView.xaml
-    /// </summary>
+
     public partial class PedidoView : UserControl
     {
         public PedidoView()
@@ -22,7 +20,7 @@ namespace WpfApp3.MVVM.View
             datagridNovoPedidos.ItemsSource = this.pedidoEmCriacao.ItemsPedido;
         }
         public Pedido pedidoEmCriacao;
-        
+
         private void DatagridPedidos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.RemovedItems.Count > 0)
@@ -31,11 +29,10 @@ namespace WpfApp3.MVVM.View
                 object a = e.Source;
 
                 object b = e.AddedItems;
-
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BuscarCliente(object sender, RoutedEventArgs e)
         {
             PessoaViewModel param = new PessoaViewModel();
             ModalCliente janela = new ModalCliente(param);
@@ -47,11 +44,11 @@ namespace WpfApp3.MVVM.View
             enderecoPessoa.Text = pedidoEmCriacao.Pessoa.Endereco;
         }
 
-        private void Button_Click2(object sender, RoutedEventArgs e)
+        private void AdicionarProduto(object sender, RoutedEventArgs e)
         {
             if (pedidoEmCriacao.Pessoa == null)
             {
-                System.Windows.MessageBox.Show("Selecione o cliente primeiro Boy!!!", "Cliente obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("Selecione o cliente primeiro!", "Cliente obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
@@ -61,11 +58,6 @@ namespace WpfApp3.MVVM.View
             datagridNovoPedidos.ItemsSource = pedidoEmCriacao.ItemsPedido;
             datagridNovoPedidos.Items.Refresh();
             totalDoPedido.Content = "R$ " + pedidoEmCriacao.ValorTotal;
-        }
-
-        private void Calendar_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -91,7 +83,7 @@ namespace WpfApp3.MVVM.View
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void FinalizarPedido(object sender, RoutedEventArgs e)
         {
             PedidoViewModel viewModel = new PedidoViewModel();
             var pedido = pedidoEmCriacao;
@@ -105,13 +97,13 @@ namespace WpfApp3.MVVM.View
                 {
                     outputFile.WriteLine(jsonString);
                 }
-                System.Windows.MessageBox.Show("Pedido finalizado com suecsso, va para area do cliente e prossiga no pedido", "Pedido salvo", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Pedido finalizado com suecsso, va para área do cliente e prossiga no pedido", "Pedido salvo", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
                 pedidoEmCriacao = new Pedido();
                 this.limparTela();
             }
             else
             {
-                var response = System.Windows.MessageBox.Show("Encontramos outro pedido para este cliente, ainda pendente, para gerar um novo altere o status do pedido pendente!", "Cliente ja possui pedido pendente", MessageBoxButton.OK, MessageBoxImage.Question, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                var response = MessageBox.Show("Encontramos outro pedido para este cliente, ainda pendente, para gerar um novo altere o status do pedido pendente!", "Cliente ja possui pedido pendente", MessageBoxButton.OK, MessageBoxImage.Question, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
             }
 
         }
@@ -128,17 +120,17 @@ namespace WpfApp3.MVVM.View
 
         private bool verificaPedidoMesmoClientePedidoPendete(PedidoViewModel view)
         {
-            bool encontrou = false;
+            bool pedidoPendendte = false;
             foreach (Pedido pedidoDaLista in view.Pedidos)
             {
                 if (pedidoDaLista.Pessoa.Id.Equals(pedidoEmCriacao.Pessoa.Id) && pedidoDaLista.StatusPedido.Equals(Pedido._status.PENDENTE))
                 {
-                    encontrou = true;
+                    pedidoPendendte = true;
                     break;
                 }
             }
 
-            if (encontrou)
+            if (pedidoPendendte)
             {
                 return true;
             }
@@ -148,7 +140,7 @@ namespace WpfApp3.MVVM.View
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void ExcluirPedido(object sender, RoutedEventArgs e)
         {
             {
                 var aff = checkBox;

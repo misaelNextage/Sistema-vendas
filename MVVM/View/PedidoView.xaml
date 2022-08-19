@@ -48,17 +48,17 @@
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <Button x:Name="pesquisarPessoas" Content="Buscar/Alterar Cliente" Click="Button_Click"  Margin="45,10,160,488" Background="#FF17A7DC" Height="25" Grid.Column="1">
+        <Button x:Name="pesquisarPessoas" Content="Buscar/Alterar Cliente" Click="BuscarCliente"  Margin="45,10,160,488" Background="#FF17A7DC" Height="25" Grid.Column="1">
             <Button.BorderBrush>
                 <ImageBrush/>
             </Button.BorderBrush>
         </Button>
-        <Button Content="Adicionar/Alterar Produtos" x:Name="abrirCatalogo" Click="Button_Click2" Margin="265,299,6,199" Background="#FF96CDB4"/>
+        <Button Content="Adicionar/Alterar Produtos" x:Name="abrirCatalogo" Click="AdicionarProduto" Margin="265,299,6,199" Background="#FF96CDB4"/>
         <Button Margin="320,448,320,43"
                 Padding="3"
                 Cursor="Hand"
                 RenderTransformOrigin="0.5,0.5"
-                Content="Finalizar Pedido" Background="#FF4CD64C" Grid.ColumnSpan="2" Click="Button_Click_1" />
+                Content="Finalizar Pedido" Background="#FF4CD64C" Grid.ColumnSpan="2" Click="FinalizarPedido" />
         <ScrollViewer
                     HorizontalScrollBarVisibility="Hidden"
                     VerticalScrollBarVisibility="Visible" Margin="43,70,169,229" Grid.ColumnSpan="2">
@@ -86,7 +86,7 @@
             </DataGrid>
 
         </ScrollViewer>
-        <Button Margin="55,255,335,238" Content="Excluir" Click="Button_Click_2">
+        <Button Margin="55,255,335,238" Content="Excluir" Click="ExcluirPedido">
         </Button>
         <ComboBox Margin="43,381,202,111" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem IsSelected="True">Dinheiro</ComboBoxItem>
