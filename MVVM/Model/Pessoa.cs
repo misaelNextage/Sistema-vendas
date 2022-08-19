@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WpfApp3.MVVM.Model
 {
-    class Pessoa : INotifyPropertyChanged, ICloneable, BaseNotifyPropertyChanged
+    public class Pessoa : INotifyPropertyChanged, ICloneable, BaseNotifyPropertyChanged
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -27,8 +27,7 @@ namespace WpfApp3.MVVM.Model
             return this.MemberwiseClone();
         }
 
-
-        [Key]
+        
         public long Id
         {
             get { return _id; }
@@ -38,8 +37,7 @@ namespace WpfApp3.MVVM.Model
                 OnPropertyChanged("Id");
             }
         }
-
-        [Required]
+        
         public string Nome
         {
             get { return _nome; }
@@ -49,8 +47,7 @@ namespace WpfApp3.MVVM.Model
                 OnPropertyChanged("Nome");
             }
         }
-
-        [Required]
+        
         public string Cpf
         {
             get { return _cpf; }
@@ -60,8 +57,7 @@ namespace WpfApp3.MVVM.Model
                 OnPropertyChanged("Cpf");
             }
         }
-
-        [Required]
+        
         public string Endereco
         {
             get { return _endereco; }

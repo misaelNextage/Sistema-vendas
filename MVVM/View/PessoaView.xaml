@@ -43,7 +43,7 @@
 
                 <Grid>
                     <Label Content="Pesquisar" Margin="0,-8,10,-4"/>
-                    <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Height="24" Margin="0,17,84,6" TextChanged="Pesquisar_TextChanged"/>
+                    <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Height="24" Margin="0,17,84,6"/>
                     <Button Content="Pesquisar" Margin="210,17,25,6" Height="24" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand"/>
                 </Grid>
             </StackPanel>
@@ -142,9 +142,9 @@
                         Height="30" 
                         Padding="3" 
                         Cursor="Hand"
-                        CommandParameter="{Binding}"
-                        Command="{Binding IncluirPedidoCommand}"
-                        Content="Novo Pedido" Background="#FF4DCF5F" />
+                        Content="Novo Pedido" Background="#FF4DCF5F" 
+                        Click="Incluir_Novo_Pedido" 
+                        />
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="347,243,13,163" Grid.ColumnSpan="2">
                 <Button Margin="5,19,0,19"

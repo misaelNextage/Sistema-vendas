@@ -104,6 +104,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MVVM\Command\PedidoCommand\DeletarPedidoCommand.cs" />
+    <Compile Include="MVVM\Command\PedidoCommand\EditarPedidoCommand.cs" />
     <Compile Include="MVVM\Command\PedidoCommand\IncluirPedidoCommand.cs" />
     <Compile Include="MVVM\Command\PedidoCommand\FiltrarStatusPedidoCommand.cs" />
     <Compile Include="MVVM\Command\PessoaCommand\MudarStatusPedido.cs" />
@@ -116,6 +118,13 @@
     <Compile Include="MVVM\Command\ProdutoCommand\NovoProdutoCommand.cs" />
     <Compile Include="MVVM\Command\ProdutoCommand\PesquisarProdutoCommand.cs" />
     <Compile Include="MVVM\Command\ProdutoCommand\DeletarProdutoCommand.cs" />
+    <Compile Include="MVVM\Model\ItemPedido.cs" />
+    <Compile Include="MVVM\View\CatalagoProdutos.xaml.cs">
+      <DependentUpon>CatalagoProdutos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\ModalCliente.xaml.cs">
+      <DependentUpon>ModalCliente.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Util\Validacao.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -132,6 +141,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\CatalagoProdutos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\ModalCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\PessoaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

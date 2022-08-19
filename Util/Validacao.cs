@@ -1,9 +1,5 @@
-﻿using System;
-namespace Util
+﻿namespace Util
 {
-    /// <summary>
-    /// Realiza a validação do CNPJ
-    /// </summary>
     public static class Validacao
     {
         public static bool IsCpf(string cpf)

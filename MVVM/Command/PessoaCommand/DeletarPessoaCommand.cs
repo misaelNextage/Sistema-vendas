@@ -7,7 +7,7 @@ using WpfApp3.MVVM.ViewModel;
 
 namespace WpfApp3.MVVM.CRUD
 {
-    class DeletarPessoaCommand : BaseCommand
+    public class DeletarPessoaCommand : BaseCommand
     {
         public override bool CanExecute(object parameter)
         {

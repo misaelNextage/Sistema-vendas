@@ -11,7 +11,7 @@ using WpfApp3.MVVM.View;
 
 namespace WpfApp3.MVVM.ViewModel
 {
-    class PessoaViewModel : ObservableCollection<Pessoa>
+    public class PessoaViewModel : ObservableCollection<Pessoa>
     {
         public Pessoa Pessoa { get; internal set; }
         public ObservableCollection<Pessoa> Pessoas { get; private set; }
@@ -34,7 +34,7 @@ namespace WpfApp3.MVVM.ViewModel
         public MudarStatusPedido MudarStatusPedidoCommand { get; set; } = new MudarStatusPedido();
 
         public bool Edicao = false;
-
+        
         public PessoaViewModel()
         {
             Pessoas = new ObservableCollection<Pessoa>();
@@ -56,6 +56,12 @@ namespace WpfApp3.MVVM.ViewModel
             set { _pessoaSelecionado = value; }
         }
 
+        public Pessoa PessoaSelecionada
+        {
+            get { return _pessoaSelecionado; }
+            set { _pessoaSelecionado = value; }
+        }
+
         private Pessoa _pessoaEdit = new Pessoa();
         public Pessoa PessoaEdit
         {
@@ -63,9 +69,7 @@ namespace WpfApp3.MVVM.ViewModel
             set { _pessoaEdit = value; }
         }
 
-
         public NovaPessoaCommand Novo { get; private set; } = new NovaPessoaCommand();
-
 
         public void PreparaPessoaCollection()
         {
@@ -88,8 +92,6 @@ namespace WpfApp3.MVVM.ViewModel
             }
         }
 
-
-
         public void PreparaPedidoCollection()
         {
             List<Pedido> source = new List<Pedido>();
@@ -108,7 +110,7 @@ namespace WpfApp3.MVVM.ViewModel
         }
     }
 
-    class PesquisaPessoa : BaseCommand
+    public class PesquisaPessoa : BaseCommand
     {
         public override bool CanExecute(object parameter)
         {

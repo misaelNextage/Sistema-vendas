@@ -6,7 +6,7 @@ using WpfApp3.MVVM.ViewModel;
 
 namespace WpfApp3.MVVM.CRUD
 {
-    class EditarPessoaCommand : BaseCommand
+    public class EditarPessoaCommand : BaseCommand
     {
         public override bool CanExecute(object parameter)
         {
