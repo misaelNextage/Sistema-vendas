@@ -9,7 +9,7 @@
     <Grid>
         <Label Content="Buscar por nome:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="24" Width="111" FontSize="12"/>
         <TextBox Text="{Binding PesquisaText}" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Name="pesquisar" VerticalAlignment="Top" Width="274" Margin="121,42,0,0"/>
-        <Button CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand" Content="Pesquisar" Margin="400,42,14,0" VerticalAlignment="Top" Height="24" Click="Button_Click"/>
+        <Button CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand" Content="Pesquisar" Margin="400,42,14,0" VerticalAlignment="Top" Height="24"/>
         <DataGrid ItemsSource="{Binding Pessoas}"
                                 AutoGenerateColumns="False"
                                 IsReadOnly="True"
