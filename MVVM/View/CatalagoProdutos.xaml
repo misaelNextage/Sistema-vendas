@@ -48,12 +48,12 @@
         <TextBox Grid.Column="1" Name="Quantidade" HorizontalAlignment="Left" Height="26" Margin="103,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
         <Label Content="Valor Unitario:" Grid.Column="1" HorizontalAlignment="Left" Margin="203,55,0,0" VerticalAlignment="Top" Width="86"/>
         <TextBox Grid.Column="1" Name="ValorUnitario" IsReadOnly="True" HorizontalAlignment="Left" Height="26" Margin="289,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="85"/>
-        <Button Content="Adicionar" Grid.Column="1" HorizontalAlignment="Left" Margin="130,125,0,0" VerticalAlignment="Top" Width="149" Click="Button_Click"/>
+        <Button Content="Adicionar" Grid.Column="1" HorizontalAlignment="Left" Margin="130,125,0,0" VerticalAlignment="Top" Width="149" Click="AdicionarProduto"/>
 
         <Label Content="Total de Itens:" Grid.Column="1" HorizontalAlignment="Left" Margin="51,38.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89"/>
         <Label Content="Total do Pedido:" Grid.Column="1" HorizontalAlignment="Left" Margin="51,86.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="114"/>
         <TextBox Grid.Column="1" Name="totalItens" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="145,38.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
         <TextBox Grid.Column="1" Name="totalPedido" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="145,86.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
-        <Button Content="Salvar Produtos" Grid.Column="1" HorizontalAlignment="Left" Margin="177,145.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="102" Height="36" Click="Button_Click_1"/>
+        <Button Content="Salvar Produtos" Grid.Column="1" HorizontalAlignment="Left" Margin="177,145.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="102" Height="36" Click="SalvarProdutos"/>
     </Grid>
 </Window>

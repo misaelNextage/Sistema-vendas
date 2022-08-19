@@ -1,30 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfApp3.MVVM.Model;
 
 namespace WpfApp3.MVVM.View
 {
-    /// <summary>
-    /// Lógica interna para CatalagoProdutos.xaml
-    /// </summary>
     public partial class CatalagoProdutos : Window
     {
         public Pedido param;
         public List<Produto> produtosDisponiveis = new List<Produto>();
         public List<ItemPedido> produtosAdicionados;
-        public int numItens;
+        public int numeroItens;
         public double totalGeral;
 
         public CatalagoProdutos(Pedido pedido)
@@ -33,9 +20,9 @@ namespace WpfApp3.MVVM.View
             InitializeComponent();
             this.carregarProdutos();
             totalGeral = 0;
-            numItens = 0;
+            numeroItens = 0;
             totalPedido.Text = totalGeral.ToString();
-            totalItens.Text = numItens.ToString();
+            totalItens.Text = numeroItens.ToString();
 
             if (pedido.ItemsPedido != null && pedido.ItemsPedido.Count > 0)
             {
@@ -45,7 +32,7 @@ namespace WpfApp3.MVVM.View
                 {
                     var valorItem = p.Produto.Valor * p.Quantidade;
                     totalGeral += valorItem;
-                    numItens += p.Quantidade;
+                    numeroItens += p.Quantidade;
                 });
             }
             else
@@ -62,9 +49,9 @@ namespace WpfApp3.MVVM.View
         {
             List<Produto> source = new List<Produto>();
 
-            using (System.IO.StreamReader r = new System.IO.StreamReader("produto.json"))
+            using (System.IO.StreamReader reader = new System.IO.StreamReader("produto.json"))
             {
-                string json = r.ReadToEnd();
+                string json = reader.ReadToEnd();
                 source = JsonSerializer.Deserialize<List<Produto>>(json);
             }
             source.ForEach(p =>
@@ -78,7 +65,7 @@ namespace WpfApp3.MVVM.View
         private void selecionarProduto(object sender, RoutedEventArgs e)
         {
             Produto produtoChange = (Produto)this.datagridProdutos.SelectedItem;
-            bool achou = false;
+            bool produto = false;
             if (param.ItemsPedido != null)
             {
                 param.ItemsPedido.ForEach(p =>
@@ -87,12 +74,12 @@ namespace WpfApp3.MVVM.View
                     {
                         Quantidade.Text = p.Quantidade.ToString();
 
-                        achou = true;
+                        produto = true;
                     }
                 });
             }
 
-            if (!achou)
+            if (!produto)
             {
                 Quantidade.Text = "0";
             }
@@ -101,23 +88,23 @@ namespace WpfApp3.MVVM.View
                 nomeProduto.Text = produtoChange.Nome;
                 ValorUnitario.Text = "R$ " + produtoChange.Valor.ToString();
             }
-            catch (Exception except)
+            catch (Exception ex)
             {
-                return;
+                throw new Exception("Erro" + ex);
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AdicionarProduto(object sender, RoutedEventArgs e)
         {
             if (this.datagridProdutos.SelectedItem == null)
             {
-                System.Windows.MessageBox.Show("Selecione um produto antes de adicionar! Ativo", "Produto obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("Selecione um produto antes de adicionar! Ativo", "Produto obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
             if (Quantidade.Text == "0")
             {
-                System.Windows.MessageBox.Show("O Produto precisa de uma quantidade", "Quantidade obrigatória", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("O Produto precisa de uma quantidade", "Quantidade obrigatória", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
             Produto produtoChange = (Produto)this.datagridProdutos.SelectedItem;
@@ -131,7 +118,6 @@ namespace WpfApp3.MVVM.View
                     {
                         p.Quantidade = Convert.ToInt32(Quantidade.Text);
                         valorDesseItem = p.Produto.Valor * p.Quantidade;
-                        //numitens
                         totalGeral += valorDesseItem;
                         totalPedido.Text = "R$ " + totalGeral.ToString();
                         encontrado = true;
@@ -142,7 +128,7 @@ namespace WpfApp3.MVVM.View
             if (!encontrado)
             {
                 valorDesseItem = produtoChange.Valor * Convert.ToDouble(Quantidade.Text);
-                numItens += Convert.ToInt32(Quantidade.Text);
+                numeroItens += Convert.ToInt32(Quantidade.Text);
                 totalGeral += valorDesseItem;
                 totalPedido.Text = "R$ " + totalGeral.ToString();
                 ItemPedido itemNovo = new ItemPedido();
@@ -152,15 +138,16 @@ namespace WpfApp3.MVVM.View
                 produtosAdicionados.Add(itemNovo);
             }
 
-            totalItens.Text = numItens.ToString();
+            totalItens.Text = numeroItens.ToString();
             Quantidade.Text = "0";
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void SalvarProdutos(object sender, RoutedEventArgs e)
         {
             this.param.ItemsPedido = produtosAdicionados;
             double somaTotal = 0;
-            produtosAdicionados.ForEach(p => {
+            produtosAdicionados.ForEach(p =>
+            {
                 somaTotal += ((double)p.Quantidade * p.Produto.Valor);
             });
             this.param.ValorTotal = somaTotal;
