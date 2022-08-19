@@ -69,9 +69,7 @@ namespace WpfApp3.MVVM.ViewModel
             set { _pessoaEdit = value; }
         }
 
-
         public NovaPessoaCommand Novo { get; private set; } = new NovaPessoaCommand();
-
 
         public void PreparaPessoaCollection()
         {
@@ -93,8 +91,6 @@ namespace WpfApp3.MVVM.ViewModel
                 PessoasSelecionado = Pessoas.FirstOrDefault();
             }
         }
-
-
 
         public void PreparaPedidoCollection()
         {
