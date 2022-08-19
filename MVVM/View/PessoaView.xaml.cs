@@ -6,9 +6,6 @@ using WpfApp3.MVVM.Model;
 
 namespace WpfApp3.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for CadastrarPessoa.xaml
-    /// </summary>
     public partial class CadastrarPessoa : UserControl
     {
         public static string nomeBotaoFiltroPedido = "";
@@ -28,7 +25,6 @@ namespace WpfApp3.MVVM.View
                 {
                     Cpf.Text = Cpf.Text.Length == 11 ? System.Convert.ToUInt64(cpf).ToString(@"000\.000\.000\-00"): cpf;
                 }
-                
             }
             catch { Cpf.Text = cpf; }
         }
@@ -42,7 +38,7 @@ namespace WpfApp3.MVVM.View
         {
             var cpfDigitado = sender as TextBox;
             Cpf.MaxLength = 11;
-            e.Handled = System.Text.RegularExpressions.Regex.IsMatch(e.Text, "[^0-9]+"); //permite só números
+            e.Handled = System.Text.RegularExpressions.Regex.IsMatch(e.Text, "[^0-9]+");
         }
 
         private void FiltroStatusPedido(object sender, RoutedEventArgs e)
@@ -66,9 +62,9 @@ namespace WpfApp3.MVVM.View
         {
             try
             {
-                MainWindow tela = new MainWindow(); //faz a abertura da janela de pedido
+                MainWindow tela = new MainWindow();
                 tela.ShowDialog();
-                System.Windows.Application.Current.Shutdown(); //encerra a aplicação
+                Application.Current.Shutdown();
             }
             catch (Exception ex)
             {
