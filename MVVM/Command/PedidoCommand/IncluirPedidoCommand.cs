@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Windows;
@@ -23,7 +22,7 @@ namespace WpfApp3.MVVM.ViewModel
 
             if (!valido)
             {
-                System.Windows.MessageBox.Show("O nome do Produto precisa ser preenchido", "Campo obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("O nome do Produto precisa ser preenchido", "Campo obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
             if (viewModel.PedidoEdit.Id > 0)
@@ -41,22 +40,22 @@ namespace WpfApp3.MVVM.ViewModel
                 pedidoSelecionado.FormaPagamentoPedido = viewModel.PedidoEdit.FormaPagamentoPedido;
                 pedidoSelecionado.StatusPedido = viewModel.PedidoEdit.StatusPedido;
 
-                bool achou = false;
+                bool pedidoId = false;
 
                 foreach (Pedido pedido in viewModel.Pedidos)
                 {
                     if (pedido.Id == viewModel.PedidoEdit.Id)
                     {
-                        achou = true;
+                        pedidoId = true;
                         break;
                     }
                 }
-                if (achou)
+                if (pedidoId)
                 {
                     viewModel.Pedidos.Remove(pedidoSelecionado);
 
-                    var clonePedido2 = (Model.Pedido)viewModel.PedidoEdit.Clone();
-                    viewModel.Pedidos.Add(clonePedido2);
+                    var pedidoClone = (Model.Pedido)viewModel.PedidoEdit.Clone();
+                    viewModel.Pedidos.Add(pedidoClone);
                 }
 
                 string jsonString = JsonSerializer.Serialize(viewModel.Pedidos, new JsonSerializerOptions() { WriteIndented = true });

@@ -43,7 +43,7 @@
 
                 <Grid>
                     <Label Content="Pesquisar" Margin="0,-8,10,-4"/>
-                    <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Height="24" Margin="0,17,84,6" TextChanged="Pesquisar_TextChanged"/>
+                    <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Height="24" Margin="0,17,84,6"/>
                     <Button Content="Pesquisar" Margin="210,17,25,6" Height="24" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand"/>
                 </Grid>
             </StackPanel>

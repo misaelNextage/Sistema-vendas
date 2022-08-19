@@ -18,11 +18,6 @@ namespace WpfApp3.MVVM.View
             InitializeComponent();
         }
 
-        private void Pesquisar_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void Cpf_LostFocus(object sender, RoutedEventArgs e)
         {
             string cpf = Cpf.Text;
@@ -36,7 +31,6 @@ namespace WpfApp3.MVVM.View
                 
             }
             catch { Cpf.Text = cpf; }
-            
         }
 
         private void Cpf_GotFocus(object sender, RoutedEventArgs e)
@@ -60,13 +54,12 @@ namespace WpfApp3.MVVM.View
         private void AlterarStatus(object sender, RoutedEventArgs e)
         {
            
-            var x = (Button)e.Source;
-            var y = sender as Button;
-            var dt = x.DataContext;
-            var td = (Pedido)x.DataContext;
+            var btnSource = (Button)e.Source;
+            var nomeBotao = sender as Button;
+            var pedido = (Pedido)btnSource.DataContext;
 
-            MudarStatusPedido mudar = new MudarStatusPedido();
-            mudar.alterarStatusPedido(td, y.Name.ToUpper());
+            MudarStatusPedido mudarStatus = new MudarStatusPedido();
+            mudarStatus.alterarStatusPedido(pedido, nomeBotao.Name.ToUpper());
         }
 
         private void Incluir_Novo_Pedido(object sender, RoutedEventArgs e)
@@ -77,9 +70,9 @@ namespace WpfApp3.MVVM.View
                 tela.ShowDialog();
                 System.Windows.Application.Current.Shutdown(); //encerra a aplicação
             }
-            catch (Exception )
+            catch (Exception ex)
             {
-                Console.WriteLine("Finalizando");
+                throw new Exception("Erro" + ex);
             }
         }
     }
