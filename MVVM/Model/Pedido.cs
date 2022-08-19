@@ -85,13 +85,13 @@ namespace WpfApp3.MVVM.Model
         }
         public String StatusPedido
         {
-            get { return _statusPedido;}
+            get { return _statusPedido; }
             set
             {
                 _statusPedido = value;
                 OnPropertyChanged("StatusPedido");
             }
-            
+
         }
 
         public String FormaPagamentoPedido

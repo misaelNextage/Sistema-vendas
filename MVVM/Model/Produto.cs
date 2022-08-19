@@ -8,9 +8,6 @@ namespace WpfApp3.MVVM.Model
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
-        // Esta rotina é chamada cada vez que o valor da propridade 
-        // for definida. Isso vai disparar um evento para notificar 
-        // a WPF via data binding que algo mudou
         private void OnPropertyChanged(string nomePropriedade)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nomePropriedade));
@@ -22,16 +19,12 @@ namespace WpfApp3.MVVM.Model
         }
 
         private long _id;
-
-        [Required]
         private string _nome;
         private int _codigo;
         private double _valor;
 
-
         public Produto() { }
 
-        [Key]
         public long Id
         {
             get { return _id; }
@@ -42,7 +35,6 @@ namespace WpfApp3.MVVM.Model
             }
         }
 
-        [Required]
         public string Nome
         {
             get { return _nome; }
@@ -52,8 +44,6 @@ namespace WpfApp3.MVVM.Model
                 OnPropertyChanged("Nome");
             }
         }
-
-        [Required]
         public int Codigo
         {
             get { return _codigo; }
@@ -63,8 +53,6 @@ namespace WpfApp3.MVVM.Model
                 OnPropertyChanged("Codigo");
             }
         }
-
-        [Required]
         public double Valor
         {
             get { return _valor; }
