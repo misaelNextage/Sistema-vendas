@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
@@ -22,6 +23,28 @@ namespace WpfApp3.MVVM.View
         }
         public Pedido pedidoEmCriacao;
 
+        public void salvar(object sender, RoutedEventArgs e)
+        {
+
+            Pedido pedido = new Pedido();
+
+            List<Pedido> source = new List<Pedido>();
+
+            using (System.IO.StreamReader r = new System.IO.StreamReader("pedido.json"))
+            {
+                string json = r.ReadToEnd();
+                source = JsonSerializer.Deserialize<List<Pedido>>(json);
+            }
+
+            source.Add(pedido);
+
+            string jsonString = JsonSerializer.Serialize(source, new JsonSerializerOptions() { WriteIndented = true });
+            using (StreamWriter outputFile = new StreamWriter("pedido.json"))
+            {
+                outputFile.WriteLine(jsonString);
+            }
+        }
+
         private void DatagridPedidos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.RemovedItems.Count > 0)
@@ -30,10 +53,11 @@ namespace WpfApp3.MVVM.View
                 object a = e.Source;
 
                 object b = e.AddedItems;
+
             }
         }
 
-        private void BuscarCliente(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             PessoaViewModel param = new PessoaViewModel();
             ModalCliente janela = new ModalCliente(param);
@@ -45,20 +69,24 @@ namespace WpfApp3.MVVM.View
             enderecoPessoa.Text = pedidoEmCriacao.Pessoa.Endereco;
         }
 
-        private void AdicionarProduto(object sender, RoutedEventArgs e)
+        private void Button_Click2(object sender, RoutedEventArgs e)
         {
             if (pedidoEmCriacao.Pessoa == null)
             {
-                MessageBox.Show("Selecione o cliente primeiro!", "Cliente obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                System.Windows.MessageBox.Show("Selecione o cliente primeiro Boy!!!", "Cliente obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
-
             CatalagoProdutos cp = new CatalagoProdutos(pedidoEmCriacao);
             cp.ShowDialog();
             datagridNovoPedidos.ItemsSource = null;
             datagridNovoPedidos.ItemsSource = pedidoEmCriacao.ItemsPedido;
             datagridNovoPedidos.Items.Refresh();
             totalDoPedido.Content = "R$ " + pedidoEmCriacao.ValorTotal;
+        }
+
+        private void Calendar_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,7 +112,7 @@ namespace WpfApp3.MVVM.View
             }
         }
 
-        private void FinalizarPedido(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             PedidoViewModel viewModel = new PedidoViewModel();
             var pedido = pedidoEmCriacao;
@@ -98,13 +126,13 @@ namespace WpfApp3.MVVM.View
                 {
                     outputFile.WriteLine(jsonString);
                 }
-                MessageBox.Show("Pedido finalizado com suecsso, va para área do cliente e prossiga no pedido", "Pedido salvo", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+                System.Windows.MessageBox.Show("Pedido finalizado com suecsso, va para area do cliente e prossiga no pedido", "Pedido salvo", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
                 pedidoEmCriacao = new Pedido();
                 this.limparTela();
             }
             else
             {
-                var response = MessageBox.Show("Encontramos outro pedido para este cliente, ainda pendente, para gerar um novo altere o status do pedido pendente!", "Cliente ja possui pedido pendente", MessageBoxButton.OK, MessageBoxImage.Question, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                var response = System.Windows.MessageBox.Show("Encontramos outro pedido para este cliente, ainda pendente, para gerar um novo altere o status do pedido pendente!", "Cliente ja possui pedido pendente", MessageBoxButton.OK, MessageBoxImage.Question, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
             }
 
         }
@@ -121,17 +149,17 @@ namespace WpfApp3.MVVM.View
 
         private bool verificaPedidoMesmoClientePedidoPendete(PedidoViewModel view)
         {
-            bool pedidoPendendte = false;
+            bool encontrou = false;
             foreach (Pedido pedidoDaLista in view.Pedidos)
             {
                 if (pedidoDaLista.Pessoa.Id.Equals(pedidoEmCriacao.Pessoa.Id) && pedidoDaLista.Status.Equals(Pedido.StatusEnum.Pendente))
                 {
-                    pedidoPendendte = true;
+                    encontrou = true;
                     break;
                 }
             }
 
-            if (pedidoPendendte)
+            if (encontrou)
             {
                 return true;
             }
@@ -139,6 +167,12 @@ namespace WpfApp3.MVVM.View
             {
                 return false;
             }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            TelaPedidos tp = new TelaPedidos();
+            tp.Show();
         }
     }
 }

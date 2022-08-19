@@ -125,6 +125,9 @@
     <Compile Include="MVVM\View\ModalCliente.xaml.cs">
       <DependentUpon>ModalCliente.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\TelaPedidos.xaml.cs">
+      <DependentUpon>TelaPedidos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Util\Validacao.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -158,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\PedidoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\TelaPedidos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

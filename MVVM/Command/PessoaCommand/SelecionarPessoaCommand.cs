@@ -29,7 +29,7 @@ namespace WpfApp3.MVVM.CRUD
             {
                 viewModel.PedidosFiltrados.Add(pedido);
             }
-
+            
         }
     }
 }

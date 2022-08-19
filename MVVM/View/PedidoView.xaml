@@ -48,17 +48,17 @@
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <Button x:Name="pesquisarPessoas" Content="Buscar/Alterar Cliente" Click="BuscarCliente"  Margin="45,10,160,488" Background="#FF17A7DC" Height="25" Grid.Column="1">
+        <Button x:Name="pesquisarPessoas" Content="Buscar/Alterar Cliente" Click="Button_Click"  Margin="45,10,160,488" Background="#FF17A7DC" Height="25" Grid.Column="1">
             <Button.BorderBrush>
                 <ImageBrush/>
             </Button.BorderBrush>
         </Button>
-        <Button Content="Adicionar/Alterar Produtos" x:Name="abrirCatalogo" Click="AdicionarProduto" Margin="265,299,6,199" Background="#FF96CDB4"/>
+        <Button Content="Adicionar/Alterar Produtos" x:Name="abrirCatalogo" Click="Button_Click2" Margin="265,299,6,199" Background="#FF96CDB4"/>
         <Button Margin="320,448,320,43"
                 Padding="3"
                 Cursor="Hand"
                 RenderTransformOrigin="0.5,0.5"
-                Content="Finalizar Pedido" Background="#FF4CD64C" Grid.ColumnSpan="2" Click="FinalizarPedido" />
+                Content="Finalizar Pedido" Background="#FF4CD64C" Grid.ColumnSpan="2" Click="Button_Click_1" />
         <ScrollViewer
                     HorizontalScrollBarVisibility="Hidden"
                     VerticalScrollBarVisibility="Visible" Margin="43,70,169,229" Grid.ColumnSpan="2">
@@ -66,6 +66,7 @@
                         AutoGenerateColumns="False"
                         IsReadOnly="False"
                         x:Name="datagridNovoPedidos"
+                      
                         SelectedItem="{Binding ItemSelecionado}" Width="577" Height="224">
                 <DataGrid.CellStyle>
                     <Style TargetType="{x:Type DataGridCell}" >
@@ -77,14 +78,12 @@
                     </Style>
                 </DataGrid.CellStyle>
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn x:Name="checkBox" Header="Selecionar" IsReadOnly="False"/>
                     <DataGridTextColumn Header="Quantidade" IsReadOnly="True" Binding="{Binding Quantidade}"/>
                     <DataGridTextColumn Header="Produto" IsReadOnly="True" Binding="{Binding Produto.Nome}" Width="150"/>
                     <DataGridTextColumn Header="Valor Unitario" IsReadOnly="True" Binding="{Binding Produto.Valor, StringFormat='c', ConverterCulture=pt-BR}" Width="150"/>
                     <DataGridTextColumn Header="Valor Total" IsReadOnly="True" Binding="{Binding Valor, StringFormat='c', ConverterCulture=pt-BR}" Width="150"/>
                 </DataGrid.Columns>
             </DataGrid>
-
         </ScrollViewer>
         <ComboBox Margin="43,381,202,111" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem IsSelected="True">Dinheiro</ComboBoxItem>
@@ -104,6 +103,6 @@
         <Label Content="Status:" HorizontalAlignment="Left" Margin="305,355,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.222,0.577" Width="190" Height="31" Grid.ColumnSpan="2"/>
         <Label Content="Data do Faturamento:" HorizontalAlignment="Left" Margin="105,355,0,0" VerticalAlignment="Top" Width="190" Height="31" Grid.Column="1"/>
         <Label Content="" Name="dataFaturamento" HorizontalAlignment="Left" Margin="105,381,0,0" VerticalAlignment="Top" Width="190" Height="31" Grid.Column="1"/>
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Height="523" Margin="354,0,0,0" VerticalAlignment="Top" Width="10"/>
+        <Button Content="Ver todos Pedidos" HorizontalAlignment="Left" Margin="74,448,0,0" VerticalAlignment="Top" Width="159" Height="32" Click="Button_Click_2"/>
     </Grid>
 </UserControl>

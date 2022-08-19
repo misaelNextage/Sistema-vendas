@@ -8,150 +8,155 @@ namespace WpfApp3.MVVM.View
 {
     public partial class CatalagoProdutos : Window
     {
+
         public Pedido param;
-        public List<Produto> produtosDisponiveis = new List<Produto>();
-        public List<ItemPedido> produtosAdicionados;
-        public int numeroItens;
-        public double totalGeral;
+
+        public List<Produto> produtosDisponiveis;
+
+        public int somaDosItens;
+        public int somaDosProdutos;
+
+        public double valorDoItem;
+        public double valoreTotalPedido;
+
 
         public CatalagoProdutos(Pedido pedido)
         {
-            this.param = pedido;
             InitializeComponent();
+            this.param = pedido;
             this.carregarProdutos();
-            totalGeral = 0;
-            numeroItens = 0;
-            totalPedido.Text = totalGeral.ToString();
-            totalItens.Text = numeroItens.ToString();
-
-            if (pedido.ItemsPedido != null && pedido.ItemsPedido.Count > 0)
-            {
-                this.produtosAdicionados = pedido.ItemsPedido;
-
-                pedido.ItemsPedido.ForEach(p =>
-                {
-                    var valorItem = p.Produto.Valor * p.Quantidade;
-                    totalGeral += valorItem;
-                    numeroItens += p.Quantidade;
-                });
-            }
-            else
-            {
-                produtosAdicionados = new List<ItemPedido>();
-            }
-            Quantidade.Text = "0";
-            ValorUnitario.Text = "0";
-            totalPedido.Text = "R$ " + totalGeral.ToString();
+            this.inicializaVariaveis();
         }
-
 
         private void carregarProdutos()
         {
-            List<Produto> source = new List<Produto>();
-
-            using (System.IO.StreamReader reader = new System.IO.StreamReader("produto.json"))
-            {
-                string json = reader.ReadToEnd();
-                source = JsonSerializer.Deserialize<List<Produto>>(json);
-            }
-            source.ForEach(p =>
-            {
-                produtosDisponiveis.Add(p);
-            });
+            ViewModel.ProdutoViewModel pvm = new ViewModel.ProdutoViewModel();
+            this.produtosDisponiveis = new List<Produto>();
             datagridProdutos.ItemsSource = null;
-            datagridProdutos.ItemsSource = produtosDisponiveis;
+            datagridProdutos.Items.Clear();
+            foreach (Produto produto in pvm.Produtos)
+            {
+                if (produto.Id != null)
+                {
+                    produtosDisponiveis.Add(produto);
+                }
+            }
+            datagridProdutos.ItemsSource = this.produtosDisponiveis;
+            datagridProdutos.Items.Refresh();
         }
 
+        private void inicializaVariaveis()
+        {
+            if (this.param.ItemsPedido != null && this.param.ItemsPedido.Count > 0)
+            {
+                this.carregarValoresEmTela();
+            }
+            else
+            {
+                this.param.ItemsPedido = new List<ItemPedido>();
+                this.carregarValoresEmTela();
+            }
+        }
+
+        private void carregarValoresEmTela()
+        {
+            Quantidade.Text = "0";
+            nomeProduto.Text = "";
+            ValorUnitario.Text = "R$ 0,00";
+            btnRemove.Visibility = Visibility.Hidden;
+
+            this.somaDosItens = 0;
+            this.somaDosProdutos = 0;
+            this.valorDoItem = 0;
+            this.valoreTotalPedido = 0;
+
+            this.param.ItemsPedido.ForEach(i => {
+                this.somaDosItens += i.Quantidade;
+                this.somaDosProdutos++;
+                this.valoreTotalPedido += ((double)i.Quantidade * i.Produto.Valor);
+            });
+            this.param.ValorTotal = this.valoreTotalPedido;
+
+            totalPedido.Text = valoreTotalPedido.ToString();
+            totalItens.Text = somaDosItens.ToString();
+        }
         private void selecionarProduto(object sender, RoutedEventArgs e)
         {
             Produto produtoChange = (Produto)this.datagridProdutos.SelectedItem;
-            bool produto = false;
-            if (param.ItemsPedido != null)
+            nomeProduto.Text = produtoChange.Nome;
+            ValorUnitario.Text = "R$ " + ((double)produtoChange.Valor).ToString();
+            bool existe = false;
+            int qtd = 0;
+            param.ItemsPedido.ForEach(i =>
             {
-                param.ItemsPedido.ForEach(p =>
+                if (i.Produto.Id == produtoChange.Id)
                 {
-                    if (p.Produto.Id == produtoChange.Id)
-                    {
-                        Quantidade.Text = p.Quantidade.ToString();
-
-                        produto = true;
-                    }
-                });
-            }
-
-            if (!produto)
+                    Quantidade.Text = Convert.ToString(i.Quantidade);
+                    btnRemove.Visibility = Visibility.Visible;
+                    existe = true;
+                }
+            });
+            if (!existe)
             {
                 Quantidade.Text = "0";
+                btnRemove.Visibility = Visibility.Hidden;
             }
-            try
-            {
-                nomeProduto.Text = produtoChange.Nome;
-                ValorUnitario.Text = "R$ " + produtoChange.Valor.ToString();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Erro" + ex);
-            }
-        }
 
-        private void AdicionarProduto(object sender, RoutedEventArgs e)
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (this.datagridProdutos.SelectedItem == null)
             {
-                MessageBox.Show("Selecione um produto antes de adicionar! Ativo", "Produto obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                System.Windows.MessageBox.Show("Selecione um produto antes de adicionar!", "Seleção Obrigatória!", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
 
-            if (Quantidade.Text == "0")
+            if (Quantidade.Text == "0" || Convert.ToInt32(Quantidade.Text) < 0)
             {
-                MessageBox.Show("O Produto precisa de uma quantidade", "Quantidade obrigatória", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                System.Windows.MessageBox.Show("Para adicionar produtos é necessario informar uma quantidade", "Quantidade minima obrigatória", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
             Produto produtoChange = (Produto)this.datagridProdutos.SelectedItem;
-            double valorDesseItem = 0;
-            bool encontrado = false;
-            if (param.ItemsPedido != null)
+            bool jaExiste = false;
+            param.ItemsPedido.ForEach(i =>
             {
-                param.ItemsPedido.ForEach(p =>
+                if (i.Produto.Id == produtoChange.Id)
                 {
-                    if (p.Produto.Id == produtoChange.Id)
-                    {
-                        p.Quantidade = Convert.ToInt32(Quantidade.Text);
-                        valorDesseItem = p.Produto.Valor * p.Quantidade;
-                        totalGeral += valorDesseItem;
-                        totalPedido.Text = "R$ " + totalGeral.ToString();
-                        encontrado = true;
-                    }
-                });
-            }
-
-            if (!encontrado)
+                    i.Quantidade = Convert.ToInt32(Quantidade.Text);
+                    jaExiste = true;
+                }
+            });
+            if (!jaExiste)
             {
-                valorDesseItem = produtoChange.Valor * Convert.ToDouble(Quantidade.Text);
-                numeroItens += Convert.ToInt32(Quantidade.Text);
-                totalGeral += valorDesseItem;
-                totalPedido.Text = "R$ " + totalGeral.ToString();
-                ItemPedido itemNovo = new ItemPedido();
-                itemNovo.Quantidade = Convert.ToInt32(Quantidade.Text);
-                itemNovo.Produto = produtoChange;
-                itemNovo.Valor = valorDesseItem;
-                produtosAdicionados.Add(itemNovo);
-            }
+                ItemPedido item = new ItemPedido();
+                item.Produto = produtoChange;
+                item.Quantidade = Convert.ToInt32(Quantidade.Text);
+                item.Valor = ((double)item.Quantidade * item.Produto.Valor);
+                param.ItemsPedido.Add(item);
 
-            totalItens.Text = numeroItens.ToString();
-            Quantidade.Text = "0";
+            }
+            this.carregarValoresEmTela();
         }
 
-        private void SalvarProdutos(object sender, RoutedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.param.ItemsPedido = produtosAdicionados;
-            double somaTotal = 0;
-            produtosAdicionados.ForEach(p =>
-            {
-                somaTotal += ((double)p.Quantidade * p.Produto.Valor);
-            });
-            this.param.ValorTotal = somaTotal;
             this.Close();
         }
+
+        private void BtnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            Produto produtoChange = (Produto)this.datagridProdutos.SelectedItem;
+            int index = 0;
+            this.param.ItemsPedido.ForEach(i => {
+                if (i.Produto.Id == produtoChange.Id)
+                {
+                    index = this.param.ItemsPedido.IndexOf(i);
+                }
+            });
+            this.param.ItemsPedido.RemoveAt(index);
+            this.carregarValoresEmTela();
+        }
+
+
     }
 }
