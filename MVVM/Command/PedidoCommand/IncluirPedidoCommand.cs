@@ -26,7 +26,7 @@ namespace WpfApp3.MVVM.ViewModel
                 System.Windows.MessageBox.Show("O nome do Produto precisa ser preenchido", "Campo obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
-            if (viewModel.PedidoEdit.Id != null && viewModel.PedidoEdit.Id > 0)
+            if (viewModel.PedidoEdit.Id > 0)
             {
 
                 var pedidoSelecionado = viewModel.PedidoSelecionado;

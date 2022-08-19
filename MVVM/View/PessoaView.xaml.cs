@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using WpfApp3.MVVM.CRUD;
 using WpfApp3.MVVM.Model;
-using WpfApp3.MVVM.ViewModel;
 
 namespace WpfApp3.MVVM.View
 {
@@ -71,6 +67,20 @@ namespace WpfApp3.MVVM.View
 
             MudarStatusPedido mudar = new MudarStatusPedido();
             mudar.alterarStatusPedido(td, y.Name.ToUpper());
+        }
+
+        private void Incluir_Novo_Pedido(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MainWindow tela = new MainWindow(); //faz a abertura da janela de pedido
+                tela.ShowDialog();
+                System.Windows.Application.Current.Shutdown(); //encerra a aplicação
+            }
+            catch (Exception )
+            {
+                Console.WriteLine("Finalizando");
+            }
         }
     }
 }

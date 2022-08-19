@@ -25,12 +25,6 @@ namespace WpfApp3.MVVM.View
         }
         public Pedido pedidoEmCriacao;
         
-        public void editar(object sender, RoutedEventArgs e)
-        {
-            string teste = "teste";
-
-        }
-
         private void DatagridPedidos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.RemovedItems.Count > 0)
@@ -62,7 +56,7 @@ namespace WpfApp3.MVVM.View
                 System.Windows.MessageBox.Show("Selecione o cliente primeiro Boy!!!", "Cliente obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
-            //falta um pedidoEmCriacao como parametro ai
+
             CatalagoProdutos cp = new CatalagoProdutos(pedidoEmCriacao);
             cp.ShowDialog();
             datagridNovoPedidos.ItemsSource = null;
