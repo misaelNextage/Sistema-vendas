@@ -1,8 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text.Json;
 using System.Windows;
-using WpfApp3.core;
 using WpfApp3.MVVM.Model;
 using WpfApp3.MVVM.ViewModel;
 
@@ -10,9 +8,9 @@ namespace WpfApp3.MVVM.CRUD
 {
     public class MudarStatusPedido
     {
-        public MudarStatusPedido() {}
+        public MudarStatusPedido() { }
 
-        public void alterarStatusPedido (Pedido pd, string name)
+        public void alterarStatusPedido(Pedido pd, string name)
         {
 
             PessoaViewModel pessoaVm = new PessoaViewModel();

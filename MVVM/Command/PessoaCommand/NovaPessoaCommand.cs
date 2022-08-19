@@ -30,7 +30,6 @@ namespace WpfApp3.MVVM.CRUD
                 pessoa.Cpf = viewModel.PessoaEdit.Cpf != null ? System.Text.RegularExpressions.Regex.Replace(viewModel.PessoaEdit.Cpf, "[^0-9]", "") : viewModel.PessoaEdit.Cpf;
                 pessoa.Endereco = viewModel.PessoaEdit.Endereco;
 
-
                 if (pessoa.Nome == null || pessoa.Nome == "")
                 {
 
@@ -98,6 +97,5 @@ namespace WpfApp3.MVVM.CRUD
                 viewModel.PreparaPessoaCollection();
             }
         }
-
     }
 }
