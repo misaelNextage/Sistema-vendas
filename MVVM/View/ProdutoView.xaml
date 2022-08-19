@@ -37,17 +37,13 @@
                         Command="{Binding Novo}"
                         Content="Salvar" Background="#FF4CD64C"/>
             </StackPanel>
-
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-
                 <Grid>
                     <Label Content="Pesquisar" Margin="0,-11,0,-1"/>
                     <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Height="24" Margin="0,13,50,10"/>
                     <Button Content="Pesquisar" Margin="244,13,-9,10" Height="24" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand"/>
                 </Grid>
             </StackPanel>
-
-
             <ScrollViewer Grid.Column="1" Grid.Row="1"
                       HorizontalScrollBarVisibility="Hidden"
                       VerticalScrollBarVisibility="Visible" Margin="0,0,10,10">
@@ -71,9 +67,7 @@
                         <DataGridTextColumn Header="Código" Binding="{Binding Codigo}" Width="60"/>
                         <DataGridTextColumn Header="Valor"  Binding="{Binding Valor}" Width="60" TextOptions.TextRenderingMode="ClearType"/>
                     </DataGrid.Columns>
-
                 </DataGrid>
-
             </ScrollViewer>
             <StackPanel Grid.Column="1" Margin="175,285,10,-30" Grid.Row="1" >
                 <Button Margin="10,3,0,3" Padding="3" 
