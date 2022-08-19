@@ -17,25 +17,8 @@ namespace WpfApp3.MVVM.Model
         private long _id;
         private Pessoa _pessoa;
         private Double _valorTotal;
-        private String _dataVenda;
-        private String _statusPedido;
-        private String _formaPagamento;
-        public enum _status
-        {
-            PENDENTE,
-            PAGO,
-            ENVIADO,
-            RECEBIDO
-        }
-
-
-        public enum FormaPagamento
-        {
-            Dinheiro,
-            Cartao,
-            Boleto
-        }
-
+        private DateTime _dataVenda;
+        
         public List<ItemPedido> ItemsPedido { get; set; }
         public Pedido() { }
 
@@ -43,7 +26,6 @@ namespace WpfApp3.MVVM.Model
         {
             return this.MemberwiseClone();
         }
-
 
         public long Id
         {
@@ -74,7 +56,7 @@ namespace WpfApp3.MVVM.Model
                 OnPropertyChanged("ValorTotal");
             }
         }
-        public String DataVenda
+        public DateTime DataVenda
         {
             get { return _dataVenda; }
             set
@@ -83,25 +65,22 @@ namespace WpfApp3.MVVM.Model
                 OnPropertyChanged("DataVenda");
             }
         }
-        public String StatusPedido
+        public FormaPagamentoEnum FormaPagamento { get; set; }
+        public StatusEnum Status { get; set; }
+
+        public enum StatusEnum
         {
-            get { return _statusPedido; }
-            set
-            {
-                _statusPedido = value;
-                OnPropertyChanged("StatusPedido");
-            }
+            Pendente,
+            Pago,
+            Enviado,
+            Recebido
 
         }
-
-        public String FormaPagamentoPedido
+        public enum FormaPagamentoEnum
         {
-            get { return _formaPagamento; }
-            set
-            {
-                _formaPagamento = value;
-                OnPropertyChanged("FormaPagamento");
-            }
+            Dinheiro,
+            Cartao,
+            Boleto
         }
     }
 }

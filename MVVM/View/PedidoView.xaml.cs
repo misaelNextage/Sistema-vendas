@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,7 +16,7 @@ namespace WpfApp3.MVVM.View
             pedidoEmCriacao = new Pedido();
             InitializeComponent();
             DataContext = new ViewModel.PedidoViewModel();
-            pedidoEmCriacao.DataVenda = "2022-08-18";
+            pedidoEmCriacao.DataVenda = DateTime.Now;
             dataFaturamento.Content = pedidoEmCriacao.DataVenda;
             datagridNovoPedidos.ItemsSource = this.pedidoEmCriacao.ItemsPedido;
         }
@@ -70,15 +71,15 @@ namespace WpfApp3.MVVM.View
             switch (selecao.Content)
             {
                 case "Boleto":
-                    pedidoEmCriacao.FormaPagamentoPedido = "Boleto";
+                    pedidoEmCriacao.FormaPagamento = Pedido.FormaPagamentoEnum.Boleto;
                     break;
 
                 case "Cartao":
-                    pedidoEmCriacao.FormaPagamentoPedido = "Cartao";
+                    pedidoEmCriacao.FormaPagamento = Pedido.FormaPagamentoEnum.Cartao;
                     break;
 
                 default:
-                    pedidoEmCriacao.FormaPagamentoPedido = "Dinheiro";
+                    pedidoEmCriacao.FormaPagamento = Pedido.FormaPagamentoEnum.Dinheiro;
                     break;
             }
         }
@@ -123,7 +124,7 @@ namespace WpfApp3.MVVM.View
             bool pedidoPendendte = false;
             foreach (Pedido pedidoDaLista in view.Pedidos)
             {
-                if (pedidoDaLista.Pessoa.Id.Equals(pedidoEmCriacao.Pessoa.Id) && pedidoDaLista.StatusPedido.Equals(Pedido._status.PENDENTE))
+                if (pedidoDaLista.Pessoa.Id.Equals(pedidoEmCriacao.Pessoa.Id) && pedidoDaLista.Status.Equals(Pedido.StatusEnum.Pendente))
                 {
                     pedidoPendendte = true;
                     break;
@@ -137,25 +138,6 @@ namespace WpfApp3.MVVM.View
             else
             {
                 return false;
-            }
-        }
-
-        private void ExcluirPedido(object sender, RoutedEventArgs e)
-        {
-            {
-                var aff = checkBox;
-                //foreach (DataGridCheckBoxColumn ck in checkBox)
-                //{
-                //    //valos exibir a linha da [0](Cells[0]) pois ela representa a coluna checkbox
-                //    //que foi selecionada
-                //    if (dp.Cells[0].Value != null)
-                //    {
-                //        MessageBox.Show("Linha " + dr.Index + " foi selecionada");
-                //    }
-                //}
-
-                var teste = datagridNovoPedidos;
-                int a = 0;
             }
         }
     }

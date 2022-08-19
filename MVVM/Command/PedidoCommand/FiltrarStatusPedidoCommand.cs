@@ -20,7 +20,7 @@ namespace WpfApp3.MVVM.CRUD
             viewModel.PedidosFiltrados.Clear();
             foreach (Pedido pedido in viewModel.TodosPedidos)
             {
-                if (pedido.StatusPedido != null && pedido.StatusPedido.Equals(CadastrarPessoa.nomeBotaoFiltroPedido) && viewModel.PessoasSelecionado.Id == pedido.Pessoa.Id)
+                if (pedido.Status.Equals(CadastrarPessoa.nomeBotaoFiltroPedido) && viewModel.PessoasSelecionado.Id == pedido.Pessoa.Id)
                 {
                     viewModel.PedidosFiltrados.Add(pedido);
                 }

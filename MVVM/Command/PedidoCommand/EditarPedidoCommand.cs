@@ -33,8 +33,8 @@ namespace WpfApp3.MVVM.Command.PedidoCommand
             viewModel.PedidoEdit.ItemsPedido = clonePedido.ItemsPedido;
             viewModel.PedidoEdit.ValorTotal = clonePedido.ValorTotal;
             viewModel.PedidoEdit.DataVenda = clonePedido.DataVenda;
-            viewModel.PedidoEdit.FormaPagamentoPedido = clonePedido.FormaPagamentoPedido;
-            viewModel.PedidoEdit.StatusPedido = clonePedido.StatusPedido;
+            viewModel.PedidoEdit.FormaPagamento = clonePedido.FormaPagamento;
+            viewModel.PedidoEdit.Status = clonePedido.Status;
         }
     
     }

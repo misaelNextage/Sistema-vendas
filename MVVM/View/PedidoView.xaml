@@ -86,8 +86,6 @@
             </DataGrid>
 
         </ScrollViewer>
-        <Button Margin="55,255,335,238" Content="Excluir" Click="ExcluirPedido">
-        </Button>
         <ComboBox Margin="43,381,202,111" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem IsSelected="True">Dinheiro</ComboBoxItem>
             <ComboBoxItem >Cartao</ComboBoxItem>

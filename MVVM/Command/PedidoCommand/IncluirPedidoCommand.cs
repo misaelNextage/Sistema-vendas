@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Windows;
@@ -37,8 +38,8 @@ namespace WpfApp3.MVVM.ViewModel
                 pedidoSelecionado.ItemsPedido = viewModel.PedidoEdit.ItemsPedido;
                 pedidoSelecionado.ValorTotal = viewModel.PedidoEdit.ValorTotal;
                 pedidoSelecionado.DataVenda = viewModel.PedidoEdit.DataVenda;
-                pedidoSelecionado.FormaPagamentoPedido = viewModel.PedidoEdit.FormaPagamentoPedido;
-                pedidoSelecionado.StatusPedido = viewModel.PedidoEdit.StatusPedido;
+                pedidoSelecionado.FormaPagamento = viewModel.PedidoEdit.FormaPagamento;
+                pedidoSelecionado.Status = viewModel.PedidoEdit.Status;
 
                 bool pedidoId = false;
 
@@ -67,9 +68,9 @@ namespace WpfApp3.MVVM.ViewModel
                 viewModel.PedidoEdit.Pessoa = null;
                 viewModel.PedidoEdit.ItemsPedido = null;
                 viewModel.PedidoEdit.ValorTotal = 0D; ;
-                viewModel.PedidoEdit.DataVenda = "2022-08-18";
-                viewModel.PedidoEdit.FormaPagamentoPedido = "Dinheiro";
-                viewModel.PedidoEdit.StatusPedido = "PENDENTE";
+                viewModel.PedidoEdit.DataVenda = DateTime.Now;
+                viewModel.PedidoEdit.FormaPagamento = Pedido.FormaPagamentoEnum.Dinheiro;
+                viewModel.PedidoEdit.Status = Pedido.StatusEnum.Pendente;
             }
             else
             {
@@ -85,8 +86,8 @@ namespace WpfApp3.MVVM.ViewModel
                 pedido.ItemsPedido = viewModel.PedidoEdit.ItemsPedido;
                 pedido.ValorTotal = viewModel.PedidoEdit.ValorTotal;
                 pedido.DataVenda = viewModel.PedidoEdit.DataVenda;
-                pedido.FormaPagamentoPedido = viewModel.PedidoEdit.FormaPagamentoPedido;
-                pedido.StatusPedido = viewModel.PedidoEdit.StatusPedido;
+                pedido.FormaPagamento = viewModel.PedidoEdit.FormaPagamento;
+                pedido.Status = viewModel.PedidoEdit.Status;
 
                 viewModel.Pedidos.Add(pedido);
                 viewModel.PedidoSelecionado = pedido;

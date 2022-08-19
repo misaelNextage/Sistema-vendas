@@ -87,9 +87,9 @@
 
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                     <DataGridTextColumn Header="Valor total" Binding="{Binding ValorTotal}"/>
-                    <DataGridTextColumn Header="Data venda" Binding="{Binding DataVenda}"/>
-                    <DataGridTextColumn Header="Forma pagamento" Binding="{Binding FormaPagamentoPedido}"/>
-                    <DataGridTextColumn Header="Status" Binding="{Binding StatusPedido}"/>
+                    <DataGridTextColumn Header="Data venda" Binding="{Binding DataVenda, ConverterCulture=pt-BR}"/>
+                    <DataGridTextColumn Header="Forma pagamento" Binding="{Binding FormaPagamento}"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
 
                     <DataGridTemplateColumn Header="Ações" Width="80">
                         <DataGridTemplateColumn.CellTemplate>

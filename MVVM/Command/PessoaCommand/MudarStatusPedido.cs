@@ -18,19 +18,19 @@ namespace WpfApp3.MVVM.CRUD
             int contador = 0;
             int posicao = -1;
 
-            if (pd.StatusPedido == "ENVIADO" && name == "PAGO")
+            if (pd.Status.Equals(Pedido.StatusEnum.Enviado) && name == "PAGO")
             {
                 MessageBox.Show("Pedido enviado não pode voltar a ser pago", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            else if (pd.StatusPedido == "RECEBIDO" && name == "PAGO")
+            else if (pd.Status.Equals(Pedido.StatusEnum.Recebido) && name == "PAGO")
             {
                 MessageBox.Show("Pedido recebido não pode voltar a ser pago", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            else if (pd.StatusPedido == "RECEBIDO" && name == "ENVIADO")
+            else if (pd.Status.Equals(Pedido.StatusEnum.Recebido) && name == "ENVIADO")
             {
                 MessageBox.Show("Pedido recebido não pode voltar a ser enviado", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            else if (pd.StatusPedido == "RECEBIDO" && name == "PAGO")
+            else if (pd.Status.Equals(Pedido.StatusEnum.Recebido) && name == "PAGO")
             {
                 MessageBox.Show("Pedido recebido não pode voltar a ser pago", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -40,7 +40,24 @@ namespace WpfApp3.MVVM.CRUD
                 {
                     if (pd.Id == p.Id)
                     {
-                        pd.StatusPedido = name;
+                        switch (name)
+                        {
+                            case "PAGO":
+                                pd.Status = Pedido.StatusEnum.Pago;
+                                break;
+                            case "ENVIADO":
+                                pd.Status = Pedido.StatusEnum.Enviado;
+                                break;
+                            case "PENDENTE":
+                                pd.Status = Pedido.StatusEnum.Pendente;
+                                break;
+                            case "RECEBIDO":
+                                pd.Status = Pedido.StatusEnum.Recebido;
+                                break;
+                            default:
+                                pd.Status = Pedido.StatusEnum.Pendente;
+                                break;
+                        }
                         posicao = contador;
                     }
                     contador++;
