@@ -22,10 +22,10 @@ namespace WpfApp3.MVVM.ViewModel
 
             if (!valido)
             {
-                System.Windows.MessageBox.Show("O nome do Produto precisa ser preenchido", "Campo obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("O nome do Produto precisa ser preenchido", "Campo obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
-            if (viewModel.ProdutoEdit.Id != null && viewModel.ProdutoEdit.Id > 0)
+            if (viewModel.ProdutoEdit.Id > 0)
             {
 
                 var produtoSelecionado = viewModel.ProdutoSelecionado;
@@ -36,22 +36,22 @@ namespace WpfApp3.MVVM.ViewModel
                 produtoSelecionado.Codigo = viewModel.ProdutoEdit.Codigo;
                 produtoSelecionado.Valor = viewModel.ProdutoEdit.Valor;
 
-                bool achou = false;
+                bool produtoId = false;
 
                 foreach (Produto produto in viewModel.Produtos)
                 {
                     if (produto.Id == viewModel.ProdutoEdit.Id)
                     {
-                        achou = true;
+                        produtoId = true;
                         break;
                     }
                 }
-                if (achou)
+                if (produtoId)
                 {
                     viewModel.Produtos.Remove(produtoSelecionado);
 
-                    var cloneProduto2 = (Model.Produto)viewModel.ProdutoEdit.Clone();
-                    viewModel.Produtos.Add(cloneProduto2);
+                    var produtoClone = (Model.Produto)viewModel.ProdutoEdit.Clone();
+                    viewModel.Produtos.Add(produtoClone);
                 }
 
                 string jsonString = JsonSerializer.Serialize(viewModel.Produtos, new JsonSerializerOptions() { WriteIndented = true });
@@ -95,11 +95,11 @@ namespace WpfApp3.MVVM.ViewModel
             {
                 return false;
             }
-            if (viewModel.ProdutoEdit.Valor == null || viewModel.ProdutoEdit.Valor < 1)
+            if (viewModel.ProdutoEdit.Valor < 1)
             {
                 return false;
             }
-            if (viewModel.ProdutoEdit.Codigo == null || viewModel.ProdutoEdit.Codigo < 1)
+            if (viewModel.ProdutoEdit.Codigo < 1)
             {
                 return false;
             }
