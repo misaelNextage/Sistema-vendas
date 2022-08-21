@@ -18,7 +18,8 @@ namespace WpfApp3.MVVM.Model
         private Pessoa _pessoa;
         private Double _valorTotal;
         private DateTime _dataVenda;
-        
+        private String _status;
+
         public List<ItemPedido> ItemsPedido { get; set; }
         public Pedido() { }
 
@@ -66,7 +67,17 @@ namespace WpfApp3.MVVM.Model
             }
         }
         public FormaPagamentoEnum FormaPagamento { get; set; }
-        public StatusEnum Status { get; set; }
+
+
+        public String Status
+        {
+            get { return _status; }
+            set
+            {
+                _status = value;
+                OnPropertyChanged("_status");
+            }
+        }
 
         public enum StatusEnum
         {

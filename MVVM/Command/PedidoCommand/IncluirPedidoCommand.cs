@@ -70,7 +70,7 @@ namespace WpfApp3.MVVM.ViewModel
                 viewModel.PedidoEdit.ValorTotal = 0D; ;
                 viewModel.PedidoEdit.DataVenda = DateTime.Now;
                 viewModel.PedidoEdit.FormaPagamento = Pedido.FormaPagamentoEnum.Dinheiro;
-                viewModel.PedidoEdit.Status = Pedido.StatusEnum.Pendente;
+                viewModel.PedidoEdit.Status = Pedido.StatusEnum.Pendente.ToString();
             }
             else
             {

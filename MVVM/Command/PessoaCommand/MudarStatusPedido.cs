@@ -43,19 +43,19 @@ namespace WpfApp3.MVVM.CRUD
                         switch (name)
                         {
                             case "PAGO":
-                                pd.Status = Pedido.StatusEnum.Pago;
+                                pd.Status = Pedido.StatusEnum.Pago.ToString();
                                 break;
                             case "ENVIADO":
-                                pd.Status = Pedido.StatusEnum.Enviado;
+                                pd.Status = Pedido.StatusEnum.Enviado.ToString();
                                 break;
                             case "PENDENTE":
-                                pd.Status = Pedido.StatusEnum.Pendente;
+                                pd.Status = Pedido.StatusEnum.Pendente.ToString();
                                 break;
                             case "RECEBIDO":
-                                pd.Status = Pedido.StatusEnum.Recebido;
+                                pd.Status = Pedido.StatusEnum.Recebido.ToString();
                                 break;
                             default:
-                                pd.Status = Pedido.StatusEnum.Pendente;
+                                pd.Status = Pedido.StatusEnum.Pendente.ToString();
                                 break;
                         }
                         posicao = contador;

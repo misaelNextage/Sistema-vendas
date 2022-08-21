@@ -120,6 +120,7 @@ namespace WpfApp3.MVVM.View
             if (!possuiPedidoPendente)
             {
                 pedido.Id = viewModel.Pedidos.Count + 1;
+                pedido.Status = Pedido.StatusEnum.Pendente.ToString();
                 viewModel.Pedidos.Add(pedido);
                 string jsonString = JsonSerializer.Serialize(viewModel.Pedidos, new JsonSerializerOptions() { WriteIndented = true });
                 using (StreamWriter outputFile = new StreamWriter("pedido.json"))
@@ -152,7 +153,8 @@ namespace WpfApp3.MVVM.View
             bool encontrou = false;
             foreach (Pedido pedidoDaLista in view.Pedidos)
             {
-                if (pedidoDaLista.Pessoa.Id.Equals(pedidoEmCriacao.Pessoa.Id) && pedidoDaLista.Status.Equals(Pedido.StatusEnum.Pendente))
+                if (pedidoDaLista.Pessoa.Id.Equals(pedidoEmCriacao.Pessoa.Id) &&
+                    pedidoDaLista.Status != null && pedidoDaLista.Status.Equals(Pedido.StatusEnum.Pendente.ToString()))
                 {
                     encontrou = true;
                     break;
