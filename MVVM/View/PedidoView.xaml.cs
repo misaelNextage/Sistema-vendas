@@ -57,19 +57,24 @@ namespace WpfApp3.MVVM.View
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Btn_Selecionar_Pessoa(object sender, RoutedEventArgs e)
         {
             PessoaViewModel param = new PessoaViewModel();
+            param.CarregarTela();
+
             ModalCliente janela = new ModalCliente(param);
             janela.ShowDialog();
-            pedidoEmCriacao.Pessoa = param.PessoaSelecionada;
-            nomePessoa.Text = pedidoEmCriacao.Pessoa.Nome;
-            idPessoa.Text = pedidoEmCriacao.Pessoa.Id.ToString();
-            cpfPessoa.Text = pedidoEmCriacao.Pessoa.Cpf;
-            enderecoPessoa.Text = pedidoEmCriacao.Pessoa.Endereco;
+            if (param.PessoaSelecionada != null)
+            {
+                pedidoEmCriacao.Pessoa = param.PessoaSelecionada;
+                nomePessoa.Text = pedidoEmCriacao.Pessoa.Nome;
+                idPessoa.Text = pedidoEmCriacao.Pessoa.Id.ToString();
+                cpfPessoa.Text = pedidoEmCriacao.Pessoa.Cpf;
+                enderecoPessoa.Text = pedidoEmCriacao.Pessoa.Endereco;
+            }
         }
 
-        private void Button_Click2(object sender, RoutedEventArgs e)
+        private void Btn_Selecionar_Produtos(object sender, RoutedEventArgs e)
         {
             if (pedidoEmCriacao.Pessoa == null)
             {
@@ -112,7 +117,7 @@ namespace WpfApp3.MVVM.View
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Btn_Finalizar_Pedido(object sender, RoutedEventArgs e)
         {
             PedidoViewModel viewModel = new PedidoViewModel();
             var pedido = pedidoEmCriacao;

@@ -14,23 +14,24 @@ namespace WpfApp3.MVVM.CRUD
         {
 
             PessoaViewModel pessoaVm = new PessoaViewModel();
+            pessoaVm.CarregarTela();
 
             int contador = 0;
             int posicao = -1;
 
-            if (pd.Status.Equals(Pedido.StatusEnum.Enviado) && name == "PAGO")
+            if (pd.Status.Equals(Pedido.StatusEnum.Enviado.ToString()) && name == "PAGO")
             {
                 MessageBox.Show("Pedido enviado não pode voltar a ser pago", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            else if (pd.Status.Equals(Pedido.StatusEnum.Recebido) && name == "PAGO")
+            else if (pd.Status.Equals(Pedido.StatusEnum.Recebido.ToString()) && name == "PAGO")
             {
                 MessageBox.Show("Pedido recebido não pode voltar a ser pago", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            else if (pd.Status.Equals(Pedido.StatusEnum.Recebido) && name == "ENVIADO")
+            else if (pd.Status.Equals(Pedido.StatusEnum.Recebido.ToString()) && name == "ENVIADO")
             {
                 MessageBox.Show("Pedido recebido não pode voltar a ser enviado", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            else if (pd.Status.Equals(Pedido.StatusEnum.Recebido) && name == "PAGO")
+            else if (pd.Status.Equals(Pedido.StatusEnum.Recebido.ToString()) && name == "PAGO")
             {
                 MessageBox.Show("Pedido recebido não pode voltar a ser pago", "Atenção", MessageBoxButton.OK, MessageBoxImage.Warning);
             }

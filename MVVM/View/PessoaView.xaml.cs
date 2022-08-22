@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WpfApp3.MVVM.CRUD;
 using WpfApp3.MVVM.Model;
+using WpfApp3.MVVM.ViewModel;
 
 namespace WpfApp3.MVVM.View
 {
@@ -56,15 +57,31 @@ namespace WpfApp3.MVVM.View
 
             MudarStatusPedido mudarStatus = new MudarStatusPedido();
             mudarStatus.alterarStatusPedido(pedido, nomeBotao.Name.ToUpper());
+
+            datagridPed.Items.Refresh();
         }
 
         private void Incluir_Novo_Pedido(object sender, RoutedEventArgs e)
         {
             try
             {
-                MainWindow tela = new MainWindow();
-                tela.ShowDialog();
-                Application.Current.Shutdown();
+                Button btnSource = (Button)e.Source;
+                Button nomeBotao = sender as Button;
+                PessoaViewModel pessoaVm = (PessoaViewModel)btnSource.DataContext;
+                Pessoa pessoaSelecionada = pessoaVm.PessoaSelecionada;
+
+                if (pessoaSelecionada != null)
+                {
+
+
+                    MainWindow main = (MainWindow)Application.Current.MainWindow;
+                    MainViewModel vm = (MainViewModel)main.DataContext;
+                    PedidoViewModel pedidoVm = (PedidoViewModel)vm.PedidoVm;
+
+                    vm.CurrentView = pedidoVm;
+                    
+                }
+                
             }
             catch (Exception ex)
             {

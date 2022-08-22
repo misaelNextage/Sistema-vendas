@@ -34,12 +34,10 @@ namespace WpfApp3.MVVM.ViewModel
         public MudarStatusPedido MudarStatusPedidoCommand { get; set; } = new MudarStatusPedido();
 
         public bool Edicao = false;
-        
+
         public PessoaViewModel()
         {
             Pessoas = new ObservableCollection<Pessoa>();
-            PreparaPessoaCollection();
-            PreparaPedidoCollection();
         }
 
         private string _pesquisaText = "";
@@ -74,6 +72,7 @@ namespace WpfApp3.MVVM.ViewModel
         public void PreparaPessoaCollection()
         {
             List<Pessoa> source = new List<Pessoa>();
+            Pessoas.Clear();
 
             using (StreamReader r = new StreamReader("pessoa.json"))
             {
@@ -95,6 +94,8 @@ namespace WpfApp3.MVVM.ViewModel
         public void PreparaPedidoCollection()
         {
             List<Pedido> source = new List<Pedido>();
+            PedidosFiltrados.Clear();
+            TodosPedidos.Clear();
 
             using (StreamReader r = new StreamReader("pedido.json"))
             {
@@ -107,6 +108,20 @@ namespace WpfApp3.MVVM.ViewModel
                 TodosPedidos.Add(p);
             });
 
+            foreach (Pedido pedido in TodosPedidos)
+            {
+                if (PessoasSelecionado.Id == pedido.Pessoa.Id)
+                {
+                    PedidosFiltrados.Add(pedido);
+                }
+            }
+
+        }
+
+        public void CarregarTela()
+        {
+            PreparaPessoaCollection();
+            PreparaPedidoCollection();
         }
     }
 

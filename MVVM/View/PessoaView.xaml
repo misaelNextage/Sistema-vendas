@@ -147,38 +147,49 @@
                         />
             </StackPanel>
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="347,243,13,163" Grid.ColumnSpan="2">
-                <Button Margin="5,19,0,19"
-                    Name="RECEBIDO"
-                    Width="63" 
-                    Height="30"
-                    Padding="3"
-                    Cursor="Hand"
-                    CommandParameter="{Binding }"
-                    Command="{Binding filtrarStatusPedidos}"    
-                    Content="Entregue" Background="#FF4DCF5F"
-                    ToolTip="Filtrar Pedidos Entregues" Click="FiltroStatusPedido"
-                        />
                 <Button Margin="10,19,0,19"
-                    Name="PENDENTE"
+                    x:Name="PENDENTE"
                     Width="80" 
                     Height="30" 
                     Padding="3" 
                     Cursor="Hand"
                     CommandParameter="{Binding}"
-                    Command="{Binding filtrarStatusPedidos }"
+                    Command="{Binding filtrarStatusPedidos}"
                     Content="Aguardando" Background="#FFE68282"
-                    ToolTip="Filtrar pedidos que estão aguardando pagamento" Click="FiltroStatusPedido"
+                    ToolTip="Filtrar pedidos que estão aguardando pagamento" Click="FiltroStatusPedido" RenderTransformOrigin="2.8,0.6"
                         />
-                <Button Margin="10 0 0 0"
-                    Name="PAGO"
+                <Button Margin="10,19,0,19"
+                    x:Name="RECEBIDO"
+                    Width="66" 
+                    Height="30"
+                    Padding="3"
+                    Cursor="Hand"
+                    CommandParameter="{Binding ''}"
+                    Command="{Binding filtrarStatusPedidos}"    
+                    Content="Entregue" Background="#FF4DCF5F"
+                    ToolTip="Filtrar Pedidos Entregues" Click="FiltroStatusPedido"
+                        />
+                <Button Margin="10,19,0,19"
+                    x:Name="PAGO"
                     Width="85" 
                     Height="30" 
                     Padding="3" 
                     Cursor="Hand"
                     CommandParameter="{Binding}"
-                    Command="{Binding filtrarStatusPedidos }"
+                    Command="{Binding filtrarStatusPedidos}"
                     Content="Pago" Background="#FFFF00"
                     ToolTip="Filtrar Pedidos Pagos" Click="FiltroStatusPedido"/>
+
+                <Button Margin="10,19,0,19"
+                    x:Name="TODOS"
+                    Width="85" 
+                    Height="30" 
+                    Padding="3" 
+                    Cursor="Hand"
+                    CommandParameter="{Binding}"
+                    Command="{Binding filtrarStatusPedidos}"
+                    Content="Ver Todos" Background="#FFB6B698"
+                    ToolTip="Ver Todos" Click="FiltroStatusPedido"/>
             </StackPanel>
             <Canvas Grid.Column="1" HorizontalAlignment="Left" Height="10" Margin="1,232,-36,0" Grid.Row="1" VerticalAlignment="Top" Width="436">
                 <Line X1="0" Y1="1" X2="500" Y2="1" Stroke="Black" StrokeThickness="1" Width="417"></Line>
