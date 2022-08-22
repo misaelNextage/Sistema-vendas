@@ -14,13 +14,57 @@ namespace WpfApp3.MVVM.View
     {
         public PedidoView()
         {
-            pedidoEmCriacao = new Pedido();
             InitializeComponent();
-            DataContext = new ViewModel.PedidoViewModel();
+            MainWindow main = (MainWindow)Application.Current.MainWindow;
+            MainViewModel vm = (MainViewModel)main.DataContext;
+            PedidoViewModel pedidoVm = (PedidoViewModel)vm.PedidoVm;
+            pedidoEmCriacao = new Pedido();
+
+            if (vm.PedidoVm.PedidoEdit != null && vm.PedidoVm.PedidoEdit.Pessoa != null)
+            {
+                pedidoEmCriacao.Pessoa = vm.PedidoVm.PedidoEdit.Pessoa;
+                idPessoa.Text = pedidoEmCriacao.Pessoa.Id.ToString();
+                nomePessoa.Text = pedidoEmCriacao.Pessoa.Nome.ToString();
+                enderecoPessoa.Text = pedidoEmCriacao.Pessoa.Endereco!= null ? pedidoEmCriacao.Pessoa.Endereco.ToString() : "";
+                cpfPessoa.Text = pedidoEmCriacao.Pessoa.Cpf.ToString();
+            }
+            else
+            {
+                pedidoEmCriacao.Pessoa = null;
+                idPessoa.Text = "";
+                nomePessoa.Text = "";
+                enderecoPessoa.Text = "";
+                cpfPessoa.Text = "";
+            }
+
             pedidoEmCriacao.DataVenda = DateTime.Now;
             dataFaturamento.Content = pedidoEmCriacao.DataVenda;
             datagridNovoPedidos.ItemsSource = this.pedidoEmCriacao.ItemsPedido;
         }
+
+        public PedidoView(Pessoa pessoa)
+        {
+            InitializeComponent();
+            DataContext = new ViewModel.PedidoViewModel();
+
+
+            if (pessoa != null)
+            {
+                pedidoEmCriacao.Pessoa = pessoa;
+                idPessoa.Text = pedidoEmCriacao.Pessoa.Id.ToString();
+                nomePessoa.Text = pedidoEmCriacao.Pessoa.Nome.ToString();
+                enderecoPessoa.Text = pedidoEmCriacao.Pessoa.Endereco.ToString();
+                cpfPessoa.Text = pedidoEmCriacao.Pessoa.Cpf.ToString();
+            }
+            else
+            {
+                pedidoEmCriacao = new Pedido();
+            }
+            pedidoEmCriacao.DataVenda = DateTime.Now;
+            dataFaturamento.Content = pedidoEmCriacao.DataVenda;
+            datagridNovoPedidos.ItemsSource = this.pedidoEmCriacao.ItemsPedido;
+        }
+
         public Pedido pedidoEmCriacao;
 
         public void salvar(object sender, RoutedEventArgs e)
@@ -78,7 +122,7 @@ namespace WpfApp3.MVVM.View
         {
             if (pedidoEmCriacao.Pessoa == null)
             {
-                System.Windows.MessageBox.Show("Selecione o cliente primeiro Boy!!!", "Cliente obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("Selecione o cliente primeiro!", "Cliente obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
             CatalagoProdutos cp = new CatalagoProdutos(pedidoEmCriacao);
@@ -97,7 +141,7 @@ namespace WpfApp3.MVVM.View
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem selecao = (ComboBoxItem)e.AddedItems[0];
-            if (selecao == null)
+            if (selecao == null || pedidoEmCriacao == null)
             {
                 return;
             }
@@ -110,9 +154,10 @@ namespace WpfApp3.MVVM.View
                 case "Cartao":
                     pedidoEmCriacao.FormaPagamento = Pedido.FormaPagamentoEnum.Cartao;
                     break;
-
-                default:
+                case "Dinheiro":
                     pedidoEmCriacao.FormaPagamento = Pedido.FormaPagamentoEnum.Dinheiro;
+                    break;
+                default:
                     break;
             }
         }
@@ -132,15 +177,14 @@ namespace WpfApp3.MVVM.View
                 {
                     outputFile.WriteLine(jsonString);
                 }
-                System.Windows.MessageBox.Show("Pedido finalizado com suecsso, va para area do cliente e prossiga no pedido", "Pedido salvo", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+                MessageBox.Show("Pedido finalizado com sucesso, va para area do cliente e prossiga no pedido", "Pedido salvo", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
                 pedidoEmCriacao = new Pedido();
                 this.limparTela();
             }
             else
             {
-                var response = System.Windows.MessageBox.Show("Encontramos outro pedido para este cliente, ainda pendente, para gerar um novo altere o status do pedido pendente!", "Cliente ja possui pedido pendente", MessageBoxButton.OK, MessageBoxImage.Question, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                var response = MessageBox.Show("Encontramos outro pedido para este cliente, ainda pendente, para gerar um novo altere o status do pedido pendente!", "Cliente ja possui pedido pendente", MessageBoxButton.OK, MessageBoxImage.Question, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
             }
-
         }
 
         private void limparTela()
@@ -176,7 +220,7 @@ namespace WpfApp3.MVVM.View
             }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Localizar_Todos_Pedidos(object sender, RoutedEventArgs e)
         {
             TelaPedidos tp = new TelaPedidos();
             tp.Show();

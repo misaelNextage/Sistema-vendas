@@ -103,6 +103,6 @@
         <Label Content="Status:" HorizontalAlignment="Left" Margin="305,355,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.222,0.577" Width="190" Height="31" Grid.ColumnSpan="2"/>
         <Label Content="Data do Faturamento:" HorizontalAlignment="Left" Margin="105,355,0,0" VerticalAlignment="Top" Width="190" Height="31" Grid.Column="1"/>
         <Label Content="" Name="dataFaturamento" HorizontalAlignment="Left" Margin="105,381,0,0" VerticalAlignment="Top" Width="190" Height="31" Grid.Column="1"/>
-        <Button Content="Ver todos Pedidos" HorizontalAlignment="Left" Margin="74,448,0,0" VerticalAlignment="Top" Width="159" Height="32" Click="Button_Click_2"/>
+        <Button Content="Ver todos Pedidos" HorizontalAlignment="Left" Margin="74,448,0,0" VerticalAlignment="Top" Width="159" Height="32" Click="Localizar_Todos_Pedidos"/>
     </Grid>
 </UserControl>

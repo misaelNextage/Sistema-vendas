@@ -68,20 +68,21 @@ namespace WpfApp3.MVVM.View
                 Button btnSource = (Button)e.Source;
                 Button nomeBotao = sender as Button;
                 PessoaViewModel pessoaVm = (PessoaViewModel)btnSource.DataContext;
+                var teste = datagridPessoas.SelectedItems;
                 Pessoa pessoaSelecionada = pessoaVm.PessoaSelecionada;
 
                 if (pessoaSelecionada != null)
                 {
-
-
                     MainWindow main = (MainWindow)Application.Current.MainWindow;
                     MainViewModel vm = (MainViewModel)main.DataContext;
+                    vm.PedidoVm.PedidoEdit = null;
                     PedidoViewModel pedidoVm = (PedidoViewModel)vm.PedidoVm;
-
+                    main.Pedidos.IsChecked = true;
+                    pedidoVm = new PedidoViewModel(pessoaSelecionada);
+                    vm.PedidoVm.PedidoEdit = new Pedido(pessoaSelecionada);
+                    pedidoVm.PedidoEdit = new Pedido(pessoaSelecionada);
                     vm.CurrentView = pedidoVm;
-                    
                 }
-                
             }
             catch (Exception ex)
             {

@@ -33,6 +33,7 @@ namespace WpfApp3.MVVM.ViewModel
         {
             CadastroProdutoVm = new ProdutoViewModel();
             PedidoVm = new PedidoViewModel();
+            PedidoVm.PedidoSelecionado = null;
             CurrentView = PedidoVm;
             CadastroPessoaVm = new PessoaViewModel();
             NovoPedido = new PedidoViewModel();

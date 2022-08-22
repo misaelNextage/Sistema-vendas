@@ -22,6 +22,9 @@ namespace WpfApp3.MVVM.Model
 
         public List<ItemPedido> ItemsPedido { get; set; }
         public Pedido() { }
+        public Pedido(Pessoa pessoa) {
+            this._pessoa = pessoa;
+        }
 
         public object Clone()
         {

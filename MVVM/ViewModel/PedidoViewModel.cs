@@ -11,6 +11,11 @@ namespace WpfApp3.MVVM.ViewModel
 {
     public class PedidoViewModel : ObservableCollection<Produto>
     {
+        public PedidoViewModel(Pessoa pessoa)
+        {
+            this.PedidoSelecionado = new Pedido(pessoa);
+        }
+
         private Pedido _pedidoSelecionado;
 
         public IncluirPedidoCommand Novo { get; private set; } = new IncluirPedidoCommand();
@@ -55,7 +60,6 @@ namespace WpfApp3.MVVM.ViewModel
             Pedidos = new ObservableCollection<Pedido>();
             PreparaPedidoCollection();
         }
-
         public void PreparaPedidoCollection()
         {
             List<Pedido> source = new List<Pedido>();
@@ -70,11 +74,6 @@ namespace WpfApp3.MVVM.ViewModel
             {
                 Pedidos.Add(p);
             });
-
-            if (Pedidos.Count > 0)
-            {
-                PedidoSelecionado = Pedidos.FirstOrDefault();
-            }
         }
     }
 
