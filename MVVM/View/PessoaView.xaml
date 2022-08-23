@@ -6,13 +6,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp3.MVVM.View"
              xmlns:viewModel="clr-namespace:WpfApp3.MVVM.ViewModel"
-             mc:Ignorable="d" Height="565" Width="799">
+             mc:Ignorable="d" Height="565" Width="1017">
 
     <StackPanel Margin="20">
-        <Grid Margin="0,0,10,0" RenderTransformOrigin="0.477,0.501">
+        <Grid RenderTransformOrigin="0.477,0.501" HorizontalAlignment="Left" Width="977">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="349*"/>
-                <ColumnDefinition Width="401*"/>
+                <ColumnDefinition Width="352*"/>
+                <ColumnDefinition Width="615*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -21,19 +21,17 @@
 
             <StackPanel Grid.Column="0" Grid.Row="1" Margin="6" Orientation="Vertical">
                 <Label Content="Nome" />
-                <TextBox Text="{Binding PessoaEdit.Nome}" x:Name="Nome" Width="250" Height="20" HorizontalAlignment="Left" Margin="0,0,0,20" ToolTip="Informe seu nome"/>
+                <TextBox Text="{Binding PessoaEdit.Nome}" x:Name="Nome"  HorizontalAlignment="Left" Margin="0,0,0,20" Width="300" ToolTip="Informe seu nome"/>
                 <Label Content="CPF" />
-                <TextBox Text="{Binding PessoaEdit.Cpf}" x:Name="Cpf" Width="250" Height="20" HorizontalAlignment="Left" Margin="0,0,0,20" LostFocus="Cpf_LostFocus" GotFocus="Cpf_GotFocus" ToolTip="Informe seu CPF contendo 11 dígitos" PreviewTextInput="Cpf_PreviewTextInput"/>
+                <TextBox Text="{Binding PessoaEdit.Cpf}" x:Name="Cpf"  HorizontalAlignment="Left" Margin="0,0,0,20" Width="300" LostFocus="Cpf_LostFocus" GotFocus="Cpf_GotFocus" ToolTip="Informe seu CPF contendo 11 dígitos" PreviewTextInput="Cpf_PreviewTextInput"/>
                 <Label Content="Endereço" />
-                <TextBox Text="{Binding PessoaEdit.Endereco}" x:Name="Endereco" Width="250" Height="20" HorizontalAlignment="Left" Margin="0,0,0,20" ToolTip="Informe seu endereço"/>
+                <TextBox Text="{Binding PessoaEdit.Endereco}" x:Name="Endereco" HorizontalAlignment="Left" Margin="0,0,0,20" Width="300" ToolTip="Informe seu endereço"/>
                 <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-                    <Button Width="63" 
-                        Height="30"
-                        Margin="0 0 0 0"
+                    <Button
                         Cursor="Hand"
                         CommandParameter="{Binding}"
                         Command="{Binding Novo}"                       
-                        Content="Cadastrar" Background="#FF62C162"
+                        Content="Cadastrar" 
                        />
                 </StackPanel>
 
@@ -42,9 +40,9 @@
             <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
 
                 <Grid>
-                    <Label Content="Pesquisar" Margin="0,-8,10,-4"/>
+                    <Label Content="Pesquisar" Margin="0,0,10,-8" Height="63" VerticalAlignment="Bottom"/>
                     <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Height="24" Margin="0,17,84,6"/>
-                    <Button Content="Pesquisar" Margin="210,17,25,6" Height="24" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand"/>
+                    <Button Content="Pesquisar" Margin="297,17,-62,6" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand" />
                 </Grid>
             </StackPanel>
 
@@ -56,10 +54,10 @@
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
                           Height="136"
-                          Width="390"
+                          Width="381"
                       Name="datagridPessoas"
                       SelectedItem="{Binding PessoasSelecionado}"
-                          SelectionMode="Single" >
+                          SelectionMode="Single">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Nome" Binding="{Binding Nome}"/>
@@ -75,13 +73,12 @@
                     </i:Interaction.Triggers>
                 </DataGrid>
             </ScrollViewer>
-            <DataGrid Margin="2,313,2,25" Grid.Row="1"
-                       Height="136"
+            <DataGrid Margin="2,313,0,0" Grid.Row="1"
                       ItemsSource="{Binding PedidosFiltrados}"
                       AutoGenerateColumns="False"
                       IsReadOnly="True"
                       Name="datagridPed"
-                      SelectedItem="{Binding PedidosSelecionado}" SelectionMode="Single" Grid.Column="1">
+                      SelectedItem="{Binding PedidosSelecionado}" SelectionMode="Single" Grid.Column="1" Height="141" VerticalAlignment="Top" HorizontalAlignment="Left" Width="576">
 
                 <DataGrid.Columns>
 
@@ -91,28 +88,28 @@
                     <DataGridTextColumn Header="Forma pagamento" Binding="{Binding FormaPagamento}"/>
                     <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
 
-                    <DataGridTemplateColumn Header="Ações" Width="80">
+                    <DataGridTemplateColumn Header="Ações">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Button ToolTip="Marcar como pago"
                                         Content="P"
-                                        Width="20"
+                                        Margin="10 0 0 0"
                                         Name="Pago"
                                         Click="AlterarStatus"
-                                        CommandParameter="{Binding}" Background="#FFFF00"/>
+                                        CommandParameter="{Binding}"/>
                                     <Button ToolTip="Marcar como enviado"
+                                        Margin="10 0 0 0"
                                         Content="E"
-                                        Width="20"
                                         Name="Enviado"
                                         Click="AlterarStatus"
-                                        CommandParameter="{Binding}" Background="#FFE68282"/>
+                                        CommandParameter="{Binding}"/>
                                     <Button ToolTip="Marcar como recebido"
                                         Content="R"
-                                        Width="20"
+                                        Margin="10 0 0 0"
                                         Name="Recebido"
                                         Click="AlterarStatus"
-                                        CommandParameter="{Binding}" Background="#FF4DCF5F" />
+                                        CommandParameter="{Binding}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -120,42 +117,33 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="328,131,30,275" Grid.ColumnSpan="2">
-                <Button Margin="22,19,0,19"
-                        Width="63" 
-                        Height="30"
-                        Padding="3"
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,141,17,265" Grid.Column="1">
+                <Button 
                         Cursor="Hand"
                         CommandParameter="{Binding}"
                         Command="{Binding Editar}"
-                        Content="Editar" Background="#FFC5C6CB"/>
+                        Content="Editar"/>
                 <Button Margin="10 0 0 0"
-                        Width="63" 
-                        Height="30" 
-                        Padding="3" 
                         Cursor="Hand"
                         CommandParameter="{Binding}"
                         Command="{Binding Deletar}"
-                        Content="Deletar" Background="#FFE68282"/>
+                        Content="Deletar"/>
                 <Button Margin="10 0 0 0"
-                        Width="85" 
-                        Height="30" 
-                        Padding="3" 
                         Cursor="Hand"
-                        Content="Novo Pedido" Background="#FF4DCF5F" 
+                        Content="Novo Pedido"
                         Click="Incluir_Novo_Pedido" 
                         />
             </StackPanel>
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="347,243,13,163" Grid.ColumnSpan="2">
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="2,240,0,166" Grid.Column="1">
                 <Button Margin="10,19,0,19"
                     x:Name="PENDENTE"
-                    Width="80" 
+                    Width="88" 
                     Height="30" 
                     Padding="3" 
                     Cursor="Hand"
                     CommandParameter="{Binding}"
                     Command="{Binding filtrarStatusPedidos}"
-                    Content="Aguardando" Background="#FFE68282"
+                    Content="Aguardando"
                     ToolTip="Filtrar pedidos que estão aguardando pagamento" Click="FiltroStatusPedido" RenderTransformOrigin="2.8,0.6"
                         />
                 <Button Margin="10,19,0,19"
@@ -166,7 +154,7 @@
                     Cursor="Hand"
                     CommandParameter="{Binding ''}"
                     Command="{Binding filtrarStatusPedidos}"    
-                    Content="Entregue" Background="#FF4DCF5F"
+                    Content="Entregue"
                     ToolTip="Filtrar Pedidos Entregues" Click="FiltroStatusPedido"
                         />
                 <Button Margin="10,19,0,19"
@@ -177,7 +165,7 @@
                     Cursor="Hand"
                     CommandParameter="{Binding}"
                     Command="{Binding filtrarStatusPedidos}"
-                    Content="Pago" Background="#FFFF00"
+                    Content="Pago"
                     ToolTip="Filtrar Pedidos Pagos" Click="FiltroStatusPedido"/>
 
                 <Button Margin="10,19,0,19"
@@ -188,10 +176,10 @@
                     Cursor="Hand"
                     CommandParameter="{Binding}"
                     Command="{Binding filtrarStatusPedidos}"
-                    Content="Ver Todos" Background="#FFB6B698"
+                    Content="Ver Todos"
                     ToolTip="Ver Todos" Click="FiltroStatusPedido"/>
             </StackPanel>
-            <Canvas Grid.Column="1" HorizontalAlignment="Left" Height="10" Margin="1,232,-36,0" Grid.Row="1" VerticalAlignment="Top" Width="436">
+            <Canvas Grid.Column="1" Height="10" Margin="1,232,14,0" Grid.Row="1" VerticalAlignment="Top">
                 <Line X1="0" Y1="1" X2="500" Y2="1" Stroke="Black" StrokeThickness="1" Width="417"></Line>
             </Canvas>
         </Grid>

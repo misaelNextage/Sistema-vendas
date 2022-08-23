@@ -6,15 +6,21 @@
         xmlns:local="clr-namespace:WpfApp3"
         xmlns:viewModel="clr-namespace:WpfApp3.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1100"
-        ResizeMode="CanResizeWithGrip"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
         Background="Transparent"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Sistema de Vendas" Height="850" Width="1500"
+        ResizeMode="CanResizeWithGrip"
         WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
-    
+
     <Border Background="White">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -25,16 +31,16 @@
                 <RowDefinition Height="75"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Column="0" Grid.Row="0" Background="AliceBlue">
+            <StackPanel Grid.Column="0" Grid.Row="0" Background="#FF340074">
                 <TextBox Text="Loja"
-                         Background="AliceBlue"
+                        Background="#FF340074"
                         FontSize="28"
                         Margin="20,20,0,0"
                         BorderThickness="0"
                         FontFamily="Roboto"/>
             </StackPanel>
-            
-            <StackPanel Grid.Row="1" Grid.Column="0" Background="AliceBlue">
+
+            <StackPanel Grid.Row="1" Grid.Column="0" Background="#FF8E63C1">
                 <RadioButton Content="Pedidos"
                              Height="50"
                              FontSize="14"
@@ -53,9 +59,14 @@
                              Style="{StaticResource BotoesLaterais}"
                              Command="{Binding CadastroPessoaViewCommand}"/>
             </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="1" Background="AliceBlue"/>
-            <StackPanel Grid.Row="1" Grid.Column="1"
-                        Background="#FFD7EDFF">
+            <StackPanel Grid.Row="0" Grid.Column="1" Background="#FF340074"/>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <StackPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF1E8EF" Offset="0"/>
+                        <GradientStop Color="#FF7E52B4" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.Background>
                 <ContentControl Margin="10"
                                 Content="{Binding CurrentView}"/>
             </StackPanel>
