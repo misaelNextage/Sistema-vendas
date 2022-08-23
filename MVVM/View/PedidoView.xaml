@@ -12,8 +12,8 @@
             <ColumnDefinition Width="435*"/>
             <ColumnDefinition Width="364*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Id:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" Width="40" Height="25"/>
-        <TextBox Text="" IsReadOnly="True" x:Name="idPessoa" Width="44" HorizontalAlignment="Right" Margin="0,15,350,488">
+        <Label Content="Id:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="18,15,0,0" VerticalAlignment="Top" Width="40" Height="25"/>
+        <TextBox Text="" IsReadOnly="True" x:Name="idPessoa" Width="44" HorizontalAlignment="Right" Margin="0,15,350,483">
             <TextBox.BorderBrush>
                 <ImageBrush/>
             </TextBox.BorderBrush>
@@ -21,8 +21,8 @@
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <Label Content="Nome:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top" Width="45" Height="25"/>
-        <TextBox Text="" IsReadOnly="True" x:Name="nomePessoa" Margin="140,15,87,488">
+        <Label Content="Nome:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="90,15,0,0" VerticalAlignment="Top" Width="45" Height="25"/>
+        <TextBox Text="" IsReadOnly="True" x:Name="nomePessoa" Margin="140,15,87,483">
             <TextBox.BorderBrush>
                 <ImageBrush/>
             </TextBox.BorderBrush>
@@ -30,8 +30,8 @@
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <Label Content="Endereço:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="18,35,0,0" VerticalAlignment="Top" Width="64" Height="25"/>
-        <TextBox Text="" IsReadOnly="True" x:Name="enderecoPessoa" Margin="78,40,354,458" Grid.ColumnSpan="2">
+        <Label Content="Endereço:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="17,59,0,0" VerticalAlignment="Top" Width="64" Height="25"/>
+        <TextBox Text="" IsReadOnly="True" x:Name="enderecoPessoa" Margin="85,59,347,439" Grid.ColumnSpan="2">
             <TextBox.BorderBrush>
                 <ImageBrush/>
             </TextBox.BorderBrush>
@@ -39,8 +39,8 @@
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <Label Content="CPF:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="353,10,0,0" VerticalAlignment="Top" Width="32" Height="25"/>
-        <TextBox Text="" IsReadOnly="True" x:Name="cpfPessoa" Margin="385,15,242,488" Grid.ColumnSpan="2">
+        <Label Content="CPF:" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="353,15,0,0" VerticalAlignment="Top" Width="32" Height="25" RenderTransformOrigin="0.5,0.98"/>
+        <TextBox Text="" IsReadOnly="True" x:Name="cpfPessoa" Margin="389,15,238,483" Grid.ColumnSpan="2">
             <TextBox.BorderBrush>
                 <ImageBrush/>
             </TextBox.BorderBrush>
@@ -48,35 +48,23 @@
                 <ImageBrush/>
             </TextBox.Background>
         </TextBox>
-        <Button x:Name="pesquisarPessoas" Content="Buscar/Alterar Cliente" Click="Btn_Selecionar_Pessoa"  Margin="45,10,160,488" Background="#FF17A7DC" Height="25" Grid.Column="1">
-            <Button.BorderBrush>
-                <ImageBrush/>
-            </Button.BorderBrush>
-        </Button>
-        <Button Content="Adicionar/Alterar Produtos" x:Name="abrirCatalogo" Click="Btn_Selecionar_Produtos" Margin="265,299,6,199" Background="#FF96CDB4"/>
-        <Button Margin="320,448,320,43"
+        <Button x:Name="pesquisarPessoas" Content="Buscar/Alterar Cliente" Click="Btn_Selecionar_Pessoa"  Margin="422,55,195,436" Grid.ColumnSpan="2"/>
+
+
+        <Button Content="Adicionar/Alterar Produtos" x:Name="abrirCatalogo" Click="Btn_Selecionar_Produtos" Margin="217,343,10,148"/>
+        <Button Margin="10,475,195,16"
                 Padding="3"
                 Cursor="Hand"
                 RenderTransformOrigin="0.5,0.5"
-                Content="Finalizar Pedido" Background="#FF4CD64C" Grid.ColumnSpan="2" Click="Btn_Finalizar_Pedido" />
+                Content="Finalizar Pedido" Click="Btn_Finalizar_Pedido" Grid.Column="1" />
         <ScrollViewer
                     HorizontalScrollBarVisibility="Hidden"
-                    VerticalScrollBarVisibility="Visible" Margin="43,70,169,229" Grid.ColumnSpan="2">
+                    VerticalScrollBarVisibility="Visible" Margin="10,102,169,197" Grid.ColumnSpan="2">
             <DataGrid ItemsSource="{Binding ''}"
                         AutoGenerateColumns="False"
                         IsReadOnly="False"
                         x:Name="datagridNovoPedidos"
-                      
                         SelectedItem="{Binding ItemSelecionado}" Width="577" Height="224">
-                <DataGrid.CellStyle>
-                    <Style TargetType="{x:Type DataGridCell}" >
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="SeaGreen"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.CellStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Quantidade" IsReadOnly="True" Binding="{Binding Quantidade}"/>
                     <DataGridTextColumn Header="Produto" IsReadOnly="True" Binding="{Binding Produto.Nome}" Width="150"/>
@@ -85,24 +73,24 @@
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>
-        <ComboBox Margin="43,381,202,111" SelectionChanged="ComboBox_SelectionChanged">
+        <ComboBox Margin="18,428,227,70" SelectionChanged="ComboBox_SelectionChanged">
             <ComboBoxItem IsSelected="True">Dinheiro</ComboBoxItem>
             <ComboBoxItem >Cartao</ComboBoxItem>
             <ComboBoxItem >Boleto</ComboBoxItem>
         </ComboBox>
 
-        <ComboBox Margin="305,381,304,111" IsReadOnly="True" IsEditable="False" IsHitTestVisible="False" Focusable="False" Grid.ColumnSpan="2">
+        <ComboBox Margin="278,428,331,70" IsReadOnly="True" IsEditable="False" IsHitTestVisible="False" Focusable="False" Grid.ColumnSpan="2">
             <ComboBoxItem IsSelected="True">Pendente</ComboBoxItem>
             <ComboBoxItem >Pago</ComboBoxItem>
             <ComboBoxItem >Recebido</ComboBoxItem>
             <ComboBoxItem >Enviado</ComboBoxItem>
         </ComboBox>
-        <Label Content="Valor do Pedido:" HorizontalAlignment="Left" Margin="390,265,0,0" VerticalAlignment="Top" Width="105" Height="29" Grid.ColumnSpan="2"/>
-        <Label Content="" Name="totalDoPedido" HorizontalAlignment="Left" Margin="65,262,0,0" VerticalAlignment="Top" Width="119" FontSize="16" FontFamily="Segoe UI Black" Height="32" Grid.Column="1"/>
-        <Label Content="Forma de Pagamento:" HorizontalAlignment="Left" Margin="43,355,0,0" VerticalAlignment="Top" Width="190" Height="31"/>
-        <Label Content="Status:" HorizontalAlignment="Left" Margin="305,355,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.222,0.577" Width="190" Height="31" Grid.ColumnSpan="2"/>
-        <Label Content="Data do Faturamento:" HorizontalAlignment="Left" Margin="105,355,0,0" VerticalAlignment="Top" Width="190" Height="31" Grid.Column="1"/>
-        <Label Content="" Name="dataFaturamento" HorizontalAlignment="Left" Margin="105,381,0,0" VerticalAlignment="Top" Width="190" Height="31" Grid.Column="1"/>
-        <Button Content="Ver todos Pedidos" HorizontalAlignment="Left" Margin="74,448,0,0" VerticalAlignment="Top" Width="159" Height="32" Click="Localizar_Todos_Pedidos"/>
+        <Label Content="Valor do Pedido:" HorizontalAlignment="Left" Margin="382,297,0,0" VerticalAlignment="Top" Width="105" Height="29" Grid.ColumnSpan="2"/>
+        <Label Content="" Name="totalDoPedido" HorizontalAlignment="Left" Margin="57,294,0,0" VerticalAlignment="Top" Width="119" FontSize="16" FontFamily="Segoe UI Black" Height="32" Grid.Column="1"/>
+        <Label Content="Forma de Pagamento:" HorizontalAlignment="Left" Margin="18,399,0,0" VerticalAlignment="Top" Width="190" Height="31"/>
+        <Label Content="Status:" HorizontalAlignment="Left" Margin="278,399,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.222,0.577" Width="190" Height="31" Grid.ColumnSpan="2"/>
+        <Label Content="Data do Faturamento:" HorizontalAlignment="Left" Margin="38,399,0,0" VerticalAlignment="Top" Width="190" Height="31" Grid.Column="1"/>
+        <Label Content="" Name="dataFaturamento" HorizontalAlignment="Left" Margin="57,422,0,0" VerticalAlignment="Top" Width="190" Height="31" Grid.Column="1"/>
+        <Button Content="Ver todos Pedidos" HorizontalAlignment="Left" Margin="18,475,0,0" VerticalAlignment="Top"  Height="32" Click="Localizar_Todos_Pedidos"/>
     </Grid>
 </UserControl>
