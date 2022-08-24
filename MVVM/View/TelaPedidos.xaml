@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3.MVVM.View"
         mc:Ignorable="d"
-        Title="TelaPedidos" Height="500" Width="1000">
+        Title="Tela de Pedidos" Height="500" Width="1000" Icon="/WpfApp3;component/Resources/Imagens/ecommerce.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label>Pedidos Cadastrados:</Label>
         <DataGrid ItemsSource="{Binding Pedidos}"
@@ -13,23 +13,15 @@
                                 IsReadOnly="True"
                                 Name="dataGridPedidosAll"
                                 SelectedItem="{Binding PedidoSelecionado}" Margin="60,40,67,24">
-            <DataGrid.CellStyle>
-                <Style TargetType="DataGridCell">
-                    <Style.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="SeaGreen"/>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.CellStyle>
+            
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="30"/>
-                <DataGridTextColumn Header="Nome" Binding="{Binding Pessoa.Nome}" Width="150"/>
-                <DataGridTextColumn Header="Endereco" Binding="{Binding Pessoa.Endereco}" Width="190"/>
-                <DataGridTextColumn Header="Valor Total" Binding="{Binding ValorTotal, StringFormat='c', ConverterCulture=pt-BR}" Width="90" TextOptions.TextRenderingMode="ClearType"/>
-                <DataGridTextColumn Header="Data venda" Binding="{Binding DataVenda, StringFormat={}{0:dd/MM/yyyy HH:mm}}" Width="130" TextOptions.TextRenderingMode="ClearType"/>
-                <DataGridTextColumn Header="Forma de Pagamento" Binding="{Binding FormaPagamento}" Width="150" TextOptions.TextRenderingMode="ClearType"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="90" TextOptions.TextRenderingMode="ClearType"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Nome" Binding="{Binding Pessoa.Nome}"/>
+                <DataGridTextColumn Header="Endereco" Binding="{Binding Pessoa.Endereco}" />
+                <DataGridTextColumn Header="Valor Total" Binding="{Binding ValorTotal, StringFormat='c', ConverterCulture=pt-BR}"  TextOptions.TextRenderingMode="ClearType"/>
+                <DataGridTextColumn Header="Data venda" Binding="{Binding DataVenda, StringFormat={}{0:dd/MM/yyyy HH:mm}}"  TextOptions.TextRenderingMode="ClearType"/>
+                <DataGridTextColumn Header="Forma de Pagamento" Binding="{Binding FormaPagamento}"  TextOptions.TextRenderingMode="ClearType"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}"  TextOptions.TextRenderingMode="ClearType"/>
             </DataGrid.Columns>
 
         </DataGrid>

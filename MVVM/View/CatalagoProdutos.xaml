@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3.MVVM.View"
         mc:Ignorable="d"
-        Title="CatalagoProdutos" Height="450" Width="800">
+        Title="Catalogo de Produtos" Height="450" Width="800" Icon="/WpfApp3;component/Resources/Imagens/ecommerce.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -24,37 +24,29 @@
                                 IsReadOnly="False"
                                 x:Name="datagridProdutos"
                                 SelectedItem="{Binding ProdutoSelecionado}" Width="336" Height="406" MouseLeftButtonUp="selecionarProduto" SelectionChanged="selecionarProduto">
-                    <DataGrid.CellStyle>
-                        <Style TargetType="{x:Type DataGridCell}" >
-                            <Style.Triggers>
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Background" Value="SeaGreen"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataGrid.CellStyle>
+                    
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="150"/>
-                        <DataGridTextColumn Header="Código" Binding="{Binding Codigo}" Width="60"/>
-                        <DataGridTextColumn Header="Valor" Binding="{Binding Valor, StringFormat='c', ConverterCulture=pt-BR}" Width="80"/>
+                        <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" />
+                        <DataGridTextColumn Header="Código" Binding="{Binding Codigo}" />
+                        <DataGridTextColumn Header="Valor" Binding="{Binding Valor, StringFormat='c', ConverterCulture=pt-BR}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
         </StackPanel>
-        <Label Content="Produto:"  Grid.Column="1" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top" Width="71"/>
+        <Label Content="Produto:"  Grid.Column="1" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Width="71"/>
         <TextBox Grid.Column="1" Name="nomeProduto" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="76,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="298"/>
         <Label Content="Quantidade:" Grid.Column="1" HorizontalAlignment="Left" Margin="23,55,0,0" VerticalAlignment="Top"/>
         <TextBox Grid.Column="1" Name="Quantidade" HorizontalAlignment="Left" Height="26" Margin="103,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
         <Label Content="Valor Unitario:" Grid.Column="1" HorizontalAlignment="Left" Margin="203,55,0,0" VerticalAlignment="Top" Width="86"/>
         <TextBox Grid.Column="1" Name="ValorUnitario" IsReadOnly="True" HorizontalAlignment="Left" Height="26" Margin="289,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="85"/>
-        <Button Content="Adicionar/Editar" Grid.Column="1" HorizontalAlignment="Left" Margin="130,125,0,0" VerticalAlignment="Top" Width="149" Click="Button_Click"/>
+        <Button Content="Adicionar/Editar" Grid.Column="1" HorizontalAlignment="Left" Margin="130,148,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
         <Label Content="Total de Itens:" Grid.Column="1" HorizontalAlignment="Left" Margin="51,38.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="89"/>
         <Label Content="Total do Pedido:" Grid.Column="1" HorizontalAlignment="Left" Margin="51,86.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="114"/>
         <TextBox Grid.Column="1" Name="totalItens" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="145,38.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
         <TextBox Grid.Column="1"  Name="totalPedido"  IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="145,86.5,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="211"/>
-        <Button Content="Salvar Produtos" Grid.Column="1" HorizontalAlignment="Left" Margin="177,145.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="102" Height="36" Click="Button_Click_1"/>
-        <Button Content="Remover item" Name="btnRemove" Grid.Column="1" HorizontalAlignment="Left" Margin="289,86,0,0" VerticalAlignment="Top" Width="85" Background="#FFD13F3F" Foreground="#FFF7F7F7" Click="BtnRemove_Click"/>
+        <Button Content="Salvar Produtos" Grid.Column="1" HorizontalAlignment="Left" Margin="145,146.5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="137" Height="36" Click="Button_Click_1"/>
+        <Button Content="Remover item" Name="btnRemove" Grid.Column="1" Margin="260,86,10,0" VerticalAlignment="Top"  Click="BtnRemove_Click"/>
     </Grid>
 </Window>

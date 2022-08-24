@@ -8,80 +8,55 @@
              xmlns:viewModel="clr-namespace:WpfApp3.MVVM.ViewModel"
              xmlns:model="clr-namespace:WpfApp3.MVVM.Model"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="850" d:DesignWidth="1500">
+    <StackPanel HorizontalAlignment="Left" Height="830" Margin="32,10,0,0" VerticalAlignment="Top" Width="1458">
+        <Grid Height="542" HorizontalAlignment="Left" Width="1352">
 
-    <StackPanel Margin="20">
-        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="249*"/>
+                <ColumnDefinition Width="427*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Column="0" Grid.Row="1" Margin="6" Orientation="Vertical">
-                <Label Content="Nome do Produto" Margin="20,0,17,0" />
-                <TextBox Text="{Binding  ProdutoEdit.Nome}" Name="nomeProduto" Height="24"   Margin="20,0,17,20"/>
-                <Label Content="Codigo do Produto" Margin="20,0,17,0" />
-                <TextBox Text="{Binding ProdutoEdit.Codigo}" Name="codigoProduto" Height="24" Margin="20,0,17,20" TextAlignment="Left"/>
-                <Label Content="Valor do Produto" Margin="20,0,17,0" />
-                <TextBox Text="{Binding ProdutoEdit.Valor}" Name="valorProduto" Height="24" Margin="20,0,17,20" TextAlignment="Left"/>
-                <Button 
-                        Height="24"
-                        Margin="206,3,17,3"
-                        Padding="3"
-                        Cursor="Hand"
+            <TextBox Text="{Binding ProdutoEdit.Nome}" x:Name="nomeProduto" HorizontalAlignment="Left" Height="23" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="351"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,224,0,0" TextWrapping="Wrap" Text="{Binding ProdutoEdit.Codigo}" x:Name="codigoProduto" VerticalAlignment="Top" Width="351"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,349,0,0" TextWrapping="Wrap" Text="{Binding ProdutoEdit.Valor}" x:Name="valorProduto" VerticalAlignment="Top" Width="351"/>
+            <Label Content="Nome" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="164" Height="35" FontSize="14"/>
+            <Label Content="Código" HorizontalAlignment="Left" Margin="10,178,0,0" VerticalAlignment="Top" Width="164" Height="35" FontSize="14"/>
+            <Label Content="Valor do Produto" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top" Width="168" Height="35" FontSize="14"/>
+            <Button Cursor="Hand"
                         RenderTransformOrigin="0.5,0.5"
                         CommandParameter="{Binding}"
                         Command="{Binding Novo}"
-                        Content="Salvar" Background="#FF4CD64C"/>
-            </StackPanel>
-            <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-                <Grid>
-                    <Label Content="Pesquisar" Margin="0,-11,0,-1"/>
-                    <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Height="24" Margin="0,13,50,10"/>
-                    <Button Content="Pesquisar" Margin="244,13,-9,10" Height="24" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand"/>
-                </Grid>
-            </StackPanel>
-            <ScrollViewer Grid.Column="1" Grid.Row="1"
-                      HorizontalScrollBarVisibility="Hidden"
-                      VerticalScrollBarVisibility="Visible" Margin="0,0,10,10">
+                        Content="Salvar" Margin="66,422,206,84" Height="Auto" FontSize="14"/>
+            <Label Content="Pesquisar" Margin="38,0,382,509" Grid.Column="1"/>
+            <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Margin="38,18,425,492" Grid.Column="1"/>
+            <Button Content="Pesquisar" Margin="480,18,224,492" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand" Grid.Column="1" Height="Auto"/>
+            <ScrollViewer Grid.Column="1"
+                          HorizontalScrollBarVisibility="Disabled"
+                          VerticalScrollBarVisibility="Auto" Margin="38,62,0,140" HorizontalAlignment="Left" Width="592">
                 <DataGrid ItemsSource="{Binding Produtos}"
                                 AutoGenerateColumns="False"
                                 IsReadOnly="True"
-                                Name="datagridProdutos"
-                                SelectedItem="{Binding ProdutoSelecionado}" Width="365">
-                    <DataGrid.CellStyle>
-                        <Style TargetType="DataGridCell" >
-                            <Style.Triggers>
-                                <Trigger Property="IsSelected" Value="True">
-                                    <Setter Property="Background" Value="SeaGreen"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </DataGrid.CellStyle>
+                                x:Name="datagridProdutos"
+                                SelectedItem="{Binding ProdutoSelecionado}" Grid.Column="1" Height="284">
+
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="150"/>
-                        <DataGridTextColumn Header="Código" Binding="{Binding Codigo}" Width="60"/>
-                        <DataGridTextColumn Header="Valor"  Binding="{Binding Valor}" Width="60" TextOptions.TextRenderingMode="ClearType"/>
+                        <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" />
+                        <DataGridTextColumn Header="Código" Binding="{Binding Codigo}"/>
+                        <DataGridTextColumn Header="Valor"  Binding="{Binding Valor}" TextOptions.TextRenderingMode="ClearType"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>
-            <StackPanel Grid.Column="1" Margin="175,285,10,-30" Grid.Row="1" >
-                <Button Margin="10,3,0,3" Padding="3" 
+            <Button 
                         CommandParameter="{Binding}"
                         Command="{Binding Deletar}"
-                        Content="Deletar" Background="#FFC54242" RenderTransformOrigin="0.65,0.542" HorizontalAlignment="Left" Width="143"/>
-            </StackPanel>
-            <StackPanel Margin="1,285,200,-30" Grid.Row="1" Grid.Column="1">
-                <Button Margin="18,3,0,3"
-                        Padding="3"
+                        Content="Deletar" RenderTransformOrigin="0.65,0.542" HorizontalAlignment="Left" Width="147" Margin="38,422,0,84" Grid.Column="1" Height="Auto"/>
+            <Button Margin="0,422,451,84"
                         CommandParameter="{Binding}"
                         Command="{Binding Editar}"
-                        Content="Editar" RenderTransformOrigin="0.5,0.5" Height="24" Background="#FF5F64CB" HorizontalAlignment="Left" Width="145"/>
-            </StackPanel>
+                        Content="Editar" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="142" Grid.Column="1" Height="Auto" />
         </Grid>
     </StackPanel>
+
+
 </UserControl>
