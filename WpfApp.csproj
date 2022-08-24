@@ -238,6 +238,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Resource Include="Resources\Imagens\cadastro-produto.png" />
+    <Resource Include="Resources\Imagens\cadastro-pessoa.png" />
+    <Resource Include="Resources\Imagens\logo.png" />
     <Resource Include="Resources\Imagens\ecommerce.ico" />
     <Resource Include="Resources\Imagens\pngwing.com.png" />
   </ItemGroup>
