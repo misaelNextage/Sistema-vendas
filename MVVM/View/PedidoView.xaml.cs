@@ -38,7 +38,7 @@ namespace WpfApp3.MVVM.View
             }
 
             pedidoEmCriacao.DataVenda = DateTime.Now;
-            dataFaturamento.Content = pedidoEmCriacao.DataVenda;
+            dataFaturamento.Content = pedidoEmCriacao.DataVenda.ToString("dd/MM/yyyy");
             datagridNovoPedidos.ItemsSource = this.pedidoEmCriacao.ItemsPedido;
         }
 
@@ -61,7 +61,7 @@ namespace WpfApp3.MVVM.View
                 pedidoEmCriacao = new Pedido();
             }
             pedidoEmCriacao.DataVenda = DateTime.Now;
-            dataFaturamento.Content = pedidoEmCriacao.DataVenda;
+            dataFaturamento.Content = pedidoEmCriacao.DataVenda.ToString("dd/MM/yyyy");
             datagridNovoPedidos.ItemsSource = this.pedidoEmCriacao.ItemsPedido;
         }
 

@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="WpfApp3.MVVM.View.CadastroProduto"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
@@ -18,7 +19,7 @@
             </Grid.ColumnDefinitions>
             <TextBox Text="{Binding ProdutoEdit.Nome}" x:Name="nomeProduto" HorizontalAlignment="Left" Height="23" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="351"/>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="10,224,0,0" TextWrapping="Wrap" Text="{Binding ProdutoEdit.Codigo}" x:Name="codigoProduto" VerticalAlignment="Top" Width="351"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,349,0,0" TextWrapping="Wrap" Text="{Binding ProdutoEdit.Valor}" x:Name="valorProduto" VerticalAlignment="Top" Width="351"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,349,0,0" TextWrapping="Wrap" Text="{Binding ProdutoEdit.Valor , StringFormat='c', ConverterCulture=pt-BR}" x:Name="valorProduto" VerticalAlignment="Top" Width="351"/>
             <Label Content="Nome" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="164" Height="35" FontSize="14"/>
             <Label Content="Código" HorizontalAlignment="Left" Margin="10,178,0,0" VerticalAlignment="Top" Width="164" Height="35" FontSize="14"/>
             <Label Content="Valor do Produto" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top" Width="168" Height="35" FontSize="14"/>
@@ -26,10 +27,10 @@
                         RenderTransformOrigin="0.5,0.5"
                         CommandParameter="{Binding}"
                         Command="{Binding Novo}"
-                        Content="Salvar" Margin="66,422,206,84" Height="Auto" FontSize="14"/>
+                        Content="Salvar" Margin="66,422,206,84" Height="Auto" FontSize="14" Click="Button_Click"/>
             <Label Content="Pesquisar" Margin="38,0,382,509" Grid.Column="1"/>
             <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Margin="38,18,425,492" Grid.Column="1"/>
-            <Button Content="Pesquisar" Margin="480,18,224,492" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand" Grid.Column="1" Height="Auto"/>
+            <Button Name="btnPesquisar" Content="Pesquisar" Margin="480,18,224,492" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand" Grid.Column="1" Height="Auto"/>
             <ScrollViewer Grid.Column="1"
                           HorizontalScrollBarVisibility="Disabled"
                           VerticalScrollBarVisibility="Auto" Margin="38,62,0,140" HorizontalAlignment="Left" Width="592">
@@ -43,7 +44,13 @@
                         <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                         <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" />
                         <DataGridTextColumn Header="Código" Binding="{Binding Codigo}"/>
-                        <DataGridTextColumn Header="Valor"  Binding="{Binding Valor}" TextOptions.TextRenderingMode="ClearType"/>
+                        <DataGridTextColumn Header="Valor"  Binding="{Binding Valor, StringFormat='c', ConverterCulture=pt-BR}"  TextOptions.TextRenderingMode="ClearType">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment" Value="Right" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </ScrollViewer>

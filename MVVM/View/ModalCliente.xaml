@@ -7,22 +7,19 @@
         mc:Ignorable="d"
         Title="ModalCliente" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="/WpfApp3;component/Resources/Imagens/ecommerce.ico">
     <Grid>
-        <Label Content="Buscar por nome:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="24" Width="124" FontSize="14"/>
-        <TextBox Text="{Binding PesquisaText}" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Name="pesquisar" VerticalAlignment="Top" Width="274" Margin="123,42,0,0"/>
-        <Button CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand" Content="Pesquisar" Margin="427,37,246,0" VerticalAlignment="Top" Height="29"/>
         <DataGrid ItemsSource="{Binding Pessoas}"
                                 AutoGenerateColumns="False"
                                 IsReadOnly="True"
                                 Name="datagridPessoasModal"
-                                SelectedItem="{Binding PessoaSelecionada}" Margin="10,71,14,54">
+                                SelectedItem="{Binding PessoaSelecionada}" Margin="10,10,14,54">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="175"/>
                 <DataGridTextColumn Header="Cpf" Binding="{Binding Cpf}" Width="125"/>
-                <DataGridTextColumn Header="Endereco"  Binding="{Binding Endereco}" Width="175" TextOptions.TextRenderingMode="ClearType"/>
+                <DataGridTextColumn Header="Endereco"  Binding="{Binding Endereco}" Width="350" TextOptions.TextRenderingMode="ClearType"/>
             </DataGrid.Columns>
 
         </DataGrid>
-        <Button x:Name="C" Command="{Binding PessoaSelecionada}" Content="Confirmar" HorizontalAlignment="Left" Margin="73,342,0,0" VerticalAlignment="Top" Width="160" Height="32" Click="Confirmar"/>
+        <Button x:Name="C" Command="{Binding PessoaSelecionada}" Content="Confirmar" HorizontalAlignment="Left" Margin="285,370,0,0" VerticalAlignment="Top" Width="160" Height="32" Click="Confirmar"/>
     </Grid>
 </Window>

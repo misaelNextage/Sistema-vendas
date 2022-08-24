@@ -77,7 +77,7 @@ namespace WpfApp3.MVVM.View
             });
             this.param.ValorTotal = this.valoreTotalPedido;
 
-            totalPedido.Text = valoreTotalPedido.ToString();
+            totalPedido.Text = String.Format("R$ " + ((double)valoreTotalPedido).ToString());
             totalItens.Text = somaDosItens.ToString();
         }
         private void selecionarProduto(object sender, RoutedEventArgs e)

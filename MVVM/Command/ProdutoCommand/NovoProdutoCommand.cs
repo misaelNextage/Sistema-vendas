@@ -16,13 +16,14 @@ namespace WpfApp3.MVVM.ViewModel
 
         public override void Execute(object parameter)
         {
+            
             var viewModel = (ProdutoViewModel)parameter;
 
             bool valido = this.validar(viewModel);
 
             if (!valido)
             {
-                MessageBox.Show("O nome do Produto precisa ser preenchido", "Campo obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
+                MessageBox.Show("Todos os dados do Produto precisam ser preenchidos", "Campo obrigatório", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.Yes, MessageBoxOptions.ServiceNotification);
                 return;
             }
             if (viewModel.ProdutoEdit.Id > 0)
@@ -59,10 +60,7 @@ namespace WpfApp3.MVVM.ViewModel
                 {
                     outputFile.WriteLine(jsonString);
                 }
-                viewModel.ProdutoEdit.Id = 0;
-                viewModel.ProdutoEdit.Nome = "";
-                viewModel.ProdutoEdit.Codigo = 0000000000;
-                viewModel.ProdutoEdit.Valor = 0.00;
+                viewModel.ProdutoEdit = new Produto();
             }
             else
             {
@@ -86,6 +84,9 @@ namespace WpfApp3.MVVM.ViewModel
                 {
                     outputFile.WriteLine(jsonString);
                 }
+                var viewModelReturn = (ProdutoViewModel)parameter;
+                viewModelReturn.ProdutoEdit = new Produto();
+                parameter = viewModelReturn;
             }
         }
 

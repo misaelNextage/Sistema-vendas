@@ -34,10 +34,11 @@
             <StackPanel Grid.Column="0" Grid.Row="0" Background="#FF340074">
                 <TextBox Text="Loja"
                         Background="#FF340074"
-                        FontSize="28"
+                        HorizontalAlignment="Center"
+                        FontSize="36"
                         Margin="20,20,0,0"
                         BorderThickness="0"
-                        FontFamily="Roboto"/>
+                        FontFamily="Roboto" IsReadOnly="True" Foreground="#DDFBFBFB" FontWeight="Bold"/>
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="0" Background="#FF8E63C1">

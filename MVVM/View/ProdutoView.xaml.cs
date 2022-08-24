@@ -12,7 +12,10 @@ namespace WpfApp3.MVVM.View
             DataContext = new ViewModel.ProdutoViewModel();
             MainWindow main = (MainWindow)Application.Current.MainWindow;
             MainViewModel vm = (MainViewModel)main.DataContext;
-            vm.PedidoVm.PedidoEdit = null;
+            vm.PedidoVm.PedidoEdit = new Model.Pedido();
+            nomeProduto.Text = "";
+            codigoProduto.Text = "";
+            valorProduto.Text = "";
         }
 
         private void DatagridProdutos_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -25,6 +28,13 @@ namespace WpfApp3.MVVM.View
                 object b = e.AddedItems;
 
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            nomeProduto.Text = "";
+            codigoProduto.Text = "";
+            valorProduto.Text = "";
         }
     }
 }
