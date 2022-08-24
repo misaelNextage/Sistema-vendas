@@ -17,23 +17,23 @@
                 <ColumnDefinition Width="249*"/>
                 <ColumnDefinition Width="427*"/>
             </Grid.ColumnDefinitions>
-            <TextBox Text="{Binding ProdutoEdit.Nome}" x:Name="nomeProduto" HorizontalAlignment="Left" Height="23" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="351"/>
+            <TextBox Text="{Binding ProdutoEdit.Nome}" x:Name="nomeProduto" HorizontalAlignment="Left" Height="23" Margin="10,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="351"/>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="10,224,0,0" TextWrapping="Wrap" Text="{Binding ProdutoEdit.Codigo}" x:Name="codigoProduto" VerticalAlignment="Top" Width="351"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,349,0,0" TextWrapping="Wrap" Text="{Binding ProdutoEdit.Valor , StringFormat='c', ConverterCulture=pt-BR}" x:Name="valorProduto" VerticalAlignment="Top" Width="351"/>
-            <Label Content="Nome" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="164" Height="35" FontSize="14"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="10,330,0,0" TextWrapping="Wrap" Text="{Binding ProdutoEdit.Valor , StringFormat='c', ConverterCulture=pt-BR}" x:Name="valorProduto" VerticalAlignment="Top" Width="351"/>
+            <Label Content="Nome" HorizontalAlignment="Left" Margin="10,95,0,0" VerticalAlignment="Top" Width="164" Height="35" FontSize="14"/>
             <Label Content="Código" HorizontalAlignment="Left" Margin="10,178,0,0" VerticalAlignment="Top" Width="164" Height="35" FontSize="14"/>
-            <Label Content="Valor do Produto" HorizontalAlignment="Left" Margin="10,304,0,0" VerticalAlignment="Top" Width="168" Height="35" FontSize="14"/>
+            <Label Content="Valor do Produto" HorizontalAlignment="Left" Margin="10,285,0,0" VerticalAlignment="Top" Width="168" Height="35" FontSize="14"/>
             <Button Cursor="Hand"
                         RenderTransformOrigin="0.5,0.5"
                         CommandParameter="{Binding}"
                         Command="{Binding Novo}"
                         Content="Salvar" Margin="66,422,206,84" Height="Auto" FontSize="14" Click="Button_Click"/>
-            <Label Content="Pesquisar" Margin="38,0,382,509" Grid.Column="1"/>
-            <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Margin="38,18,425,492" Grid.Column="1"/>
-            <Button Name="btnPesquisar" Content="Pesquisar" Margin="480,18,224,492" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand" Grid.Column="1" Height="Auto"/>
-            <ScrollViewer Grid.Column="1"
+            <Label Content="Pesquisar" Margin="469,1,449,508" Grid.ColumnSpan="2"/>
+            <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Margin="469,19,492,491" Grid.ColumnSpan="2"/>
+            <Button Name="btnPesquisar" Content="Pesquisar" Margin="388,19,316,491" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand" Grid.Column="1" Height="Auto"/>
+            <ScrollViewer
                           HorizontalScrollBarVisibility="Disabled"
-                          VerticalScrollBarVisibility="Auto" Margin="38,62,0,140" HorizontalAlignment="Left" Width="592">
+                          VerticalScrollBarVisibility="Auto" Margin="469,62,0,140" HorizontalAlignment="Left" Width="696" Grid.ColumnSpan="2">
                 <DataGrid ItemsSource="{Binding Produtos}"
                                 AutoGenerateColumns="False"
                                 IsReadOnly="True"
@@ -41,10 +41,10 @@
                                 SelectedItem="{Binding ProdutoSelecionado}" Grid.Column="1" Height="284">
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
-                        <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" />
-                        <DataGridTextColumn Header="Código" Binding="{Binding Codigo}"/>
-                        <DataGridTextColumn Header="Valor"  Binding="{Binding Valor, StringFormat='c', ConverterCulture=pt-BR}"  TextOptions.TextRenderingMode="ClearType">
+                        <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="100"/>
+                        <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="250"/>
+                        <DataGridTextColumn Header="Código" Binding="{Binding Codigo}" Width="200"/>
+                        <DataGridTextColumn Header="Valor"  Binding="{Binding Valor, StringFormat='c',  ConverterCulture=pt-BR}" Width="100"  TextOptions.TextRenderingMode="ClearType">
                             <DataGridTextColumn.ElementStyle>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="TextAlignment" Value="Right" />
@@ -57,8 +57,8 @@
             <Button 
                         CommandParameter="{Binding}"
                         Command="{Binding Deletar}"
-                        Content="Deletar" RenderTransformOrigin="0.65,0.542" HorizontalAlignment="Left" Width="147" Margin="38,422,0,84" Grid.Column="1" Height="Auto"/>
-            <Button Margin="0,422,451,84"
+                        Content="Deletar" RenderTransformOrigin="0.65,0.542" HorizontalAlignment="Left" Width="146" Margin="129,422,0,84" Grid.Column="1" Height="Auto"/>
+            <Button Margin="0,422,361,84"
                         CommandParameter="{Binding}"
                         Command="{Binding Editar}"
                         Content="Editar" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="142" Grid.Column="1" Height="Auto" />

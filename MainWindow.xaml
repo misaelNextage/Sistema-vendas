@@ -52,30 +52,45 @@
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="0" Background="#FF8E63C1">
-                <RadioButton Content="Cadastrar Pedidos"
+                <RadioButton Content="Pedidos"
                              Height="50"
                              FontSize="14"
                              Style="{StaticResource BotoesLaterais}"
                              IsChecked="True"
                              Name="Pedidos"
                              Command="{Binding VenderViewCommand}" FontWeight="Bold" SnapsToDevicePixels="True">
-                   
+
                 </RadioButton>
-                <RadioButton Content="Cadastros Produto"
+                <RadioButton Content="Produtos"
                              Height="50"
                              FontSize="14"
                              Style="{StaticResource BotoesLaterais}"
                              Command="{Binding CadastroViewCommand}" FontWeight="Bold">
                 </RadioButton>
-                <RadioButton Content="Cadastro Pessoa"
+                <RadioButton Content="Pessoas"
                              Height="50"
                              FontSize="14"
                              Style="{StaticResource BotoesLaterais}"
                              Command="{Binding CadastroPessoaViewCommand}" FontWeight="Bold">
-                   
+
                 </RadioButton>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1" Background="#FF340074"/>
+            <Rectangle Margin="129,104,0,599" Grid.Row="1">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Resources/Imagens/cadastro-pessoa.png" Stretch="Uniform"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="129,10,0,693" Grid.Row="1">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Resources/Imagens/cadastro-pedidos.png" Stretch="Uniform"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Margin="129,52,0,651" Grid.Row="1">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Resources/Imagens/cadastro-produtos.png" Stretch="Uniform"/>
+                </Rectangle.Fill>
+            </Rectangle>
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <StackPanel.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -86,6 +101,7 @@
                 <ContentControl Margin="10"
                                 Content="{Binding CurrentView}"/>
             </StackPanel>
+
         </Grid>
     </Border>
 </Window>
