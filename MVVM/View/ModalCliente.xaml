@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3.MVVM.View"
         mc:Ignorable="d"
-        Title="ModalCliente" Height="450" Width="800">
+        Title="ModalCliente" Height="450" Width="800" WindowStartupLocation="CenterScreen" Icon="/WpfApp3;component/Resources/Imagens/ecommerce.ico">
     <Grid>
         <Label Content="Buscar por nome:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="24" Width="124" FontSize="14"/>
         <TextBox Text="{Binding PesquisaText}" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Name="pesquisar" VerticalAlignment="Top" Width="274" Margin="123,42,0,0"/>

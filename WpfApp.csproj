@@ -238,6 +238,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Resource Include="Resources\Imagens\ecommerce.ico" />
+    <Resource Include="Resources\Imagens\pngwing.com.png" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll" />
