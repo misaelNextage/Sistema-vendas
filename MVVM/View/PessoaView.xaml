@@ -42,7 +42,12 @@
                 <Grid>
                     <Label Content="Pesquisar" Margin="0,0,10,-8" Height="63" VerticalAlignment="Bottom"/>
                     <TextBox Text="{Binding PesquisaText}" Name="pesquisar" Height="24" Margin="0,17,84,6"/>
-                    <Button Content="Pesquisar" Margin="297,17,-62,6" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand" />
+                    <Button Margin="297,17,-62,6" CommandParameter="{Binding}" Command="{Binding Pesquisa}" Cursor="Hand" >
+                        <StackPanel Orientation="Horizontal" Height="28">
+                            <Image Source="/WpfApp3;component/Resources/Imagens/pngwing.com.png" Height="20" Width="27"/>
+                            <Label Content="Pesquisar" VerticalAlignment="Center" HorizontalAlignment="Right" Width="Auto"/>
+                        </StackPanel>
+                    </Button>
                 </Grid>
             </StackPanel>
 

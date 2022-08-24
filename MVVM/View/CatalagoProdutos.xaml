@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3.MVVM.View"
         mc:Ignorable="d"
-        Title="CatalagoProdutos" Height="450" Width="800">
+        Title="Catalogo de Produtos" Height="450" Width="800" Icon="/WpfApp3;component/Resources/Imagens/ecommerce.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

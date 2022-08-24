@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3.MVVM.View"
         mc:Ignorable="d"
-        Title="TelaPedidos" Height="500" Width="1000">
+        Title="Tela de Pedidos" Height="500" Width="1000" Icon="/WpfApp3;component/Resources/Imagens/ecommerce.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label>Pedidos Cadastrados:</Label>
         <DataGrid ItemsSource="{Binding Pedidos}"
