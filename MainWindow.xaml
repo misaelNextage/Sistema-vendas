@@ -76,17 +76,17 @@
                 </RadioButton>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1" Background="#FF340074"/>
-            <Rectangle Margin="129,104,0,599" Grid.Row="1">
+            <Rectangle Margin="129,104,0,0" Grid.Row="1" Height="42" VerticalAlignment="Top">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="Resources/Imagens/cadastro-pessoa.png" Stretch="Uniform"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Margin="129,10,0,693" Grid.Row="1">
+            <Rectangle Margin="129,10,0,0" Grid.Row="1" Height="42" VerticalAlignment="Top">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="Resources/Imagens/cadastro-pedidos.png" Stretch="Uniform"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Margin="129,52,0,651" Grid.Row="1">
+            <Rectangle Margin="129,52,0,0" Grid.Row="1" Height="42" VerticalAlignment="Top">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="Resources/Imagens/cadastro-produtos.png" Stretch="Uniform"/>
                 </Rectangle.Fill>
